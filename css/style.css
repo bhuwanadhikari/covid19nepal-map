@@ -1,0 +1,52 @@
+path:hover {
+    fill: orangered;
+}
+
+.district{
+    stroke-width: 0;
+}
+
+.district:hover .district{
+    fill: orangered
+}
+
+.ekk {
+
+    fill: #e6b9f2
+}
+
+.dui {
+
+    fill: #e2f284
+}
+
+.bagmati {
+
+    fill: #fffc9a
+}
+
+.gandaki {
+
+    fill: #ffca75
+}
+
+.lumbini {
+
+    fill: #e6b9f2
+}
+
+.karnali {
+    fill: #fffc9a
+}
+
+.sudurpashchim {
+
+    fill: #e2f284
+}
+
+
+
+.state_boundary:hover,
+#path4007:hover {
+    fill: none
+}
