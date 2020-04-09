@@ -2,7 +2,6 @@ console.log("in another file!")
 window.addEventListener("click", (e) => {
     // console.log(e.target.id, e.target.className.baseVal)
 })
-
 const stateColors = {
     ekk: '#e6b9f2',
     dui: '#e2f284',
@@ -13,14 +12,24 @@ const stateColors = {
     sudurpashchim: '#e2f284'
 }
 
+
+//Hovering over the state when the zoom is low
 $('.district').hover((e) => {
-    console.log(e.target.className.baseVal)
     const province = e.target.className.baseVal.split(' ')[2]
-    console.log(province)
     $(`.${province}`).css('fill', 'green')
 }, (e) => {
-    console.log(e.target.className.baseVal)
     const province = e.target.className.baseVal.split(' ')[2]
-    console.log(province)
     $(`.${province}`).css('fill', stateColors[province])
+})
+
+//
+$(window).bind('resize', (e) => {
+    //change the margin
+    const mapWidth = $('.nepal-svg').width()
+    const windowWidth = $(window).width()
+    const marginValue = (windowWidth - mapWidth) / 2
+    console.log(mapWidth, windowWidth, marginValue);
+    $('.nepal-svg').css({
+         'left': `${marginValue}px`,
+         })
 })

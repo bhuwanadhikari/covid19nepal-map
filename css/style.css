@@ -1,37 +1,44 @@
+.nepal-svg{
+    width: 80%;
+    align-self: center;
+    justify-self: center;
+    position: relative;
+    max-width:  850px;
+    left: 10%;
+    margin: auto;
+    overflow: visible;
+}
+
+
 path:hover {
     fill: orangered;
 }
 
-.district{
+.district {
     stroke-width: 0;
 }
 
-.district:hover .district{
+.district:hover .district {
     fill: orangered
 }
 
 .ekk {
-
     fill: #e6b9f2
 }
 
 .dui {
-
     fill: #e2f284
 }
 
 .bagmati {
-
     fill: #fffc9a
 }
 
 .gandaki {
-
     fill: #ffca75
 }
 
 .lumbini {
-
     fill: #e6b9f2
 }
 
@@ -40,7 +47,6 @@ path:hover {
 }
 
 .sudurpashchim {
-
     fill: #e2f284
 }
 
