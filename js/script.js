@@ -6,7 +6,8 @@ window.addEventListener("click", (e) => {
 
 
 
-//Helper functions
+//@@@Helper functions
+//To show province wise
 const showProvinceWise = () => {
     const allDistricts = $('.district')
 
@@ -21,6 +22,8 @@ const showProvinceWise = () => {
         }
     })
 }
+
+//To show district wise
 const showDistrictWise = () => {
     const allDistricts = $('.district')
 
@@ -34,6 +37,22 @@ const showDistrictWise = () => {
             // console.log(err)
         }
     })
+}
+
+//Show hovered area separately
+const showHovered = (hoveredClass) => {
+    let hoveredEl = $(`.${hoveredClass}`)
+    let tempEl = $('.temp-element')[0]
+    console.log(tempEl);
+    if (isProvinceWise) {
+        //show whole province
+        
+        tempEl.prepend(hoveredEl[7])
+    } else if (isDistricWise) {
+        //show only district
+        tempEl.prepend(hoveredEl[7])
+
+    }
 }
 
 var isDistricWise = false;
@@ -66,16 +85,22 @@ $('.district').hover((e) => {
     if (isProvinceWise) {
         const province = e.target.className.baseVal.split(' ')[2]
         $(`.${province}`).css('fill-opacity', '0.7')
+        showHovered(province)
     } else {
-        $(`#${e.target.id}`).css('fill-opacity', '0.7')
+        const districtName = e.target.className.baseVal.split(' ')[1]
+        $(`.${districtName}`).css('fill-opacity', '0.7')
+        showHovered(districtName)
 
     }
 }, (e) => {
     if (isProvinceWise) {
         const province = e.target.className.baseVal.split(' ')[2]
         $(`.${province}`).css('fill-opacity', '1')
+        // showHovered(province)
     } else {
-        $(`#${e.target.id}`).css('fill-opacity', '1')
+        const districtName = e.target.className.baseVal.split(' ')[1]
+        $(`.${districtName}`).css('fill-opacity', '1')
+        // showHovered(districtName)
 
 
     }
@@ -127,5 +152,8 @@ $('.button-district').bind('click', (e) => {
         showDistrictWise()
     }
 })
+
+
+
 
 
