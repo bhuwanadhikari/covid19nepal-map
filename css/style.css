@@ -8,48 +8,51 @@
 }
 .nepal-svg {
 }
-
-
-path:hover {
-    fill: #ff4500;
+.nation_boundary{
+    stroke: silver;
+    stroke-width: 1px;
 }
 
-.district {
-    stroke-width: 0;
+path:hover {
+    fill-opacity: 0.7;
+}
+
+path {
+    stroke-width: 2px;
+    stroke: white;
 }
 
 .district:hover .district {
-    fill: #ff4500
+    fill-opacity: 0.7;
 }
 
-/* 
 .ekk {
-    fill: #e6b9f2
+    fill: #de98eb
 }
 
 .dui {
-    fill: #e2f284
+    fill: #f2a55a
 }
 
 .bagmati {
-    fill: #fffc9a
+    fill: #6ac45b
 }
 
 .gandaki {
-    fill: #ffca75
+    fill: #f2a55a
 }
 
 .lumbini {
-    fill: #e6b9f2
+    fill: #de98eb
 }
 
 .karnali {
-    fill: #fffc9a
+    fill: #6ac45b
 }
 
 .sudurpashchim {
-    fill: #e2f284
-} */
+    fill: #28a6f5
+} 
 
 
 
@@ -57,3 +60,60 @@ path:hover {
 #path4007:hover {
     fill: none
 }
+
+
+/* Styles for two buttons */
+@import url('https://fonts.googleapis.com/css?family=Raleway:300,400');
+
+
+.button-district, .button-province {
+  display: inline-flex;
+  height: 30px;
+  padding: 0 10px;
+  border: 2px solid #304242;
+  margin: 5px 5px 5px 5px;
+  color: #304242;
+  text-decoration: none;
+  font-size: .8em;
+  letter-spacing: 1.5px;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+a {
+  color: #304242;
+  text-decoration: none;
+  letter-spacing: 1px;
+}
+
+
+/* Fourth Button */
+
+#button-4 {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+#button-4 a {
+  position: relative;
+  transition: all .45s ease-Out;
+}
+
+#underline {
+  width: 100%;
+  height: 2.5px;
+  margin-top: 15px;
+  align-self: flex-end;
+  left: -200px;
+  background: #304242;
+  position: absolute;
+  transition: all .3s ease-Out;
+  bottom: 0;
+}
+
+#button-4:hover #underline {
+  left: 0;
+}
+

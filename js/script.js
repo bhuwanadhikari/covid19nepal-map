@@ -2,14 +2,51 @@ console.log("in another file!")
 window.addEventListener("click", (e) => {
     // console.log(e.target.id, e.target.className.baseVal)
 })
+
+
+
+
+//Helper functions
+const showProvinceWise = () => {
+    const allDistricts = $('.district')
+
+    // console.log(allDistricts)
+    Object.keys(allDistricts).forEach((item, index) => {
+        try {
+            const province = allDistricts[item].className.baseVal.split(' ')[2]
+            allDistricts[item].style.fill = stateColors[province]
+            allDistricts[item].style['stroke-width'] = 0
+        } catch (err) {
+            // console.log(err)
+        }
+    })
+}
+const showDistrictWise = () => {
+    const allDistricts = $('.district')
+
+    // console.log(allDistricts)
+    Object.keys(allDistricts).forEach((item, index) => {
+        try {
+            const province = allDistricts[item].className.baseVal.split(' ')[2]
+            allDistricts[item].style.fill = stateColors[province]
+            allDistricts[item].style['stroke-width'] = 1
+        } catch (err) {
+            // console.log(err)
+        }
+    })
+}
+
+var isDistricWise = false;
+var isProvinceWise = false;
+
 const stateColors = {
-    ekk: '#e6b9f2',
-    dui: '#e2f284',
-    bagmati: '#fffc9a',
-    gandaki: '#ffca75',
-    lumbini: '#e6b9f2',
-    karnali: '#fffc9a',
-    sudurpashchim: '#e2f284'
+    ekk: '#de98eb',
+    dui: '#f2a55a',
+    bagmati: '#6ac45b',
+    gandaki: '#f2a55a',
+    lumbini: '#de98eb',
+    karnali: '#6ac45b',
+    sudurpashchim: '#28a6f5'
 }
 
 const hoverStateColors = {
@@ -23,21 +60,24 @@ const hoverStateColors = {
 }
 
 
-//Hovering over the state when the zoom is low
 $('.district').hover((e) => {
-
-    const mapWidth = $('.nepal-svg').width()
-    if (mapWidth < 500) {
+    //Hovering over the state when the zoom is low
+    console.log('is province wise', isProvinceWise);
+    if (isProvinceWise) {
         const province = e.target.className.baseVal.split(' ')[2]
-        $(`.${province}`).css('fill', '#ff4500')
+        $(`.${province}`).css('fill-opacity', '0.7')
+    } else {
+        $(`#${e.target.id}`).css('fill-opacity', '0.7')
+
     }
 }, (e) => {
-
-    const mapWidth = $('.nepal-svg').width()
-    if (mapWidth < 500) {
-
+    if (isProvinceWise) {
         const province = e.target.className.baseVal.split(' ')[2]
-        $(`.${province}`).css('fill', stateColors[province])
+        $(`.${province}`).css('fill-opacity', '1')
+    } else {
+        $(`#${e.target.id}`).css('fill-opacity', '1')
+
+
     }
 })
 
@@ -53,31 +93,39 @@ $('.district').hover((e) => {
 //     })
 // })
 
-
+//State wise or district wise?
 const mapWidth = $('.nepal-svg').width()
 if (mapWidth > 500) {
     //show districts with their respective colors
+    isDistricWise = true
+    isProvinceWise = false
+    showDistrictWise();
+    $('#map-button-text').text('Show Province Wise')
 
 } else {
     //show only states with respective colors\
-    const allDistricts = $('.district')
-    
-    // console.log(allDistricts)
-    Object.keys(allDistricts).forEach((item, index)=>{
-        try{
-            const province = allDistricts[item].className.baseVal.split(' ')[2]
-            allDistricts[item].style.fill = stateColors[province]
-        }catch(err){
-            console.log(err)
-        }
-    })
-
+    isDistricWise = false
+    isProvinceWise = true
+    showProvinceWise();
+    $('#map-button-text').text('Show District Wise')
     // const province = e.target.className.baseVal.split(' ')[2] 
 }
 
-//Handle the clicking of zoom plus
-$('.plus').bind('click', (e)=>{
-    console.log('zoom clicked');
+
+
+
+//Handle button press
+
+$('.button-district').bind('click', (e) => {
+    isDistricWise = !isDistricWise;
+    isProvinceWise = !isProvinceWise;
+    if (isProvinceWise) {
+        $('#map-button-text').text('Show District Wise')
+        showProvinceWise()
+    } else {
+        $('#map-button-text').text('Show Province Wise')
+        showDistrictWise()
+    }
 })
 
 
