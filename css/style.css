@@ -1,17 +1,17 @@
-.nepal-svg{
-    width: 80%;
-    align-self: center;
-    justify-self: center;
+.map-wrapper {
+    width: 90%;
+    display: block;
     position: relative;
-    max-width:  850px;
-    left: 10%;
+    max-width: 750px;
     margin: auto;
-    overflow: visible;
+    border: 1px solid silver;
+}
+.nepal-svg {
 }
 
 
 path:hover {
-    fill: orangered;
+    fill: #ff4500;
 }
 
 .district {
@@ -19,9 +19,10 @@ path:hover {
 }
 
 .district:hover .district {
-    fill: orangered
+    fill: #ff4500
 }
 
+/* 
 .ekk {
     fill: #e6b9f2
 }
@@ -48,7 +49,7 @@ path:hover {
 
 .sudurpashchim {
     fill: #e2f284
-}
+} */
 
 
 
