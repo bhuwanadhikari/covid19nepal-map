@@ -7,15 +7,7 @@ window.addEventListener("click", (e) => {
 
 //@@@Helper functions
 //By how much the elements should be translated
-const translateBy = (hoveredClass) => {
 
-
-    const hoveredElement =  $(`.${hoveredClass}`)[0]
-    const boundedBox = hoveredElement.getBBox();
-    console.log(hoveredClass ,boundedBox.x);
-
-    return `translate(-${boundedBox.x}px, -${300}px)`;
-}
 //To show province wise
 const showProvinceWise = () => {
     const allDistricts = $('.district')
@@ -50,26 +42,25 @@ const showDistrictWise = () => {
 
 //Show hovered area separately
 const showHovered = (hoveredClass) => {
-    console.log('hovred class is given as', hoveredClass);
-    let hoveredEl = $(`.${hoveredClass}`)
-    hoveredEl.addClass("tempPath")
-    let tempSvg = $('.temp-svg')
-    let darchu = $('.darchu')
-    if (isProvinceWise) {
-        //show whole province
+        
+    // if (isProvinceWise) {
+    //     //show whole province
 
-    } else if (isDistricWise) {
-        //show only districtconsole.log(tempPath)
-        const hoveredPath = $('.hoveredClass')
+    // } else if (isDistricWise) {
+    //     //show only districtconsole.log(tempPath)
 
-        tempPath = $('.tempPath')
-        tempSvg.prepend(tempPath)
-        tempPath.css({
-            "fill": "green",
-            "transform": translateBy(hoveredClass),
-        });
+    //     tempPath = $('.tempPath')
 
-    }
+    //     //if there is already hovered element replace the element by newly hovered
+    //     try {
+    //         $('.tempPath').replaceWith(hoveredEl)
+    //     } catch (err) {
+    //         console.log('aready hovered one', err);
+    //         tempSvg.prepend(tempPath)
+    //     }
+        
+
+    // }
 }
 
 var isDistricWise = false;
@@ -105,7 +96,6 @@ $('.district').hover((e) => {
     } else {
         const districtName = e.target.className.baseVal.split(' ')[1]
         $(`.${districtName}`).css('fill-opacity', '0.7')
-        showHovered(districtName)
 
     }
 }, (e) => {

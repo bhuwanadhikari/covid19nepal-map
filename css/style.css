@@ -2,14 +2,14 @@
     width: 90%;
     display: block;
     position: relative;
-    max-width: 750px;
+    max-width: 850px;
     margin: auto;
     border: 1px solid silver;
 }
 
 .tooltip-details {
     position: absolute;
-    right: 50px;
+    left: 60%;
     top: 40px;
     
 }
@@ -21,6 +21,10 @@
 
 .temp-svg {
     overflow: visible;
+}
+
+.temp-path{
+    overflow: visible
 }
 
 .nepal-svg {}
@@ -37,6 +41,10 @@ path:hover {
 path {
     stroke-width: 2px;
     stroke: white;
+}
+
+.district {
+    stroke-width: 2px;
 }
 
 .district:hover .district {
