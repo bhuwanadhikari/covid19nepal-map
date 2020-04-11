@@ -11,11 +11,15 @@
     position: absolute;
     right: 50px;
     top: 40px;
-
+    
 }
 
-.temp-element {
-    fill: brown;
+.darchu {
+    fill: red;
+    
+}
+
+.temp-svg {
     overflow: visible;
 }
 

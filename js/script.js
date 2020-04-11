@@ -1,4 +1,3 @@
-console.log("in another file!")
 window.addEventListener("click", (e) => {
     // console.log(e.target.id, e.target.className.baseVal)
 })
@@ -7,6 +6,16 @@ window.addEventListener("click", (e) => {
 
 
 //@@@Helper functions
+//By how much the elements should be translated
+const translateBy = (hoveredClass) => {
+
+
+    const hoveredElement =  $(`.${hoveredClass}`)[0]
+    const boundedBox = hoveredElement.getBBox();
+    console.log(hoveredClass ,boundedBox.x);
+
+    return `translate(-${boundedBox.x}px, -${300}px)`;
+}
 //To show province wise
 const showProvinceWise = () => {
     const allDistricts = $('.district')
@@ -41,16 +50,24 @@ const showDistrictWise = () => {
 
 //Show hovered area separately
 const showHovered = (hoveredClass) => {
+    console.log('hovred class is given as', hoveredClass);
     let hoveredEl = $(`.${hoveredClass}`)
-    let tempEl = $('.temp-element')[0]
-    console.log(tempEl);
+    hoveredEl.addClass("tempPath")
+    let tempSvg = $('.temp-svg')
+    let darchu = $('.darchu')
     if (isProvinceWise) {
         //show whole province
-        
-        tempEl.prepend(hoveredEl[7])
+
     } else if (isDistricWise) {
-        //show only district
-        tempEl.prepend(hoveredEl[7])
+        //show only districtconsole.log(tempPath)
+        const hoveredPath = $('.hoveredClass')
+
+        tempPath = $('.tempPath')
+        tempSvg.prepend(tempPath)
+        tempPath.css({
+            "fill": "green",
+            "transform": translateBy(hoveredClass),
+        });
 
     }
 }
@@ -81,7 +98,6 @@ const hoverStateColors = {
 
 $('.district').hover((e) => {
     //Hovering over the state when the zoom is low
-    console.log('is province wise', isProvinceWise);
     if (isProvinceWise) {
         const province = e.target.className.baseVal.split(' ')[2]
         $(`.${province}`).css('fill-opacity', '0.7')
