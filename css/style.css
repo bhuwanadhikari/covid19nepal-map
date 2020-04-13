@@ -8,7 +8,6 @@
     font-family: 'Baloo Paaji 2', Arial, Helvetica, sans-serif;
 }
 .hover-details{
-    display: none;
     padding: 8px;
     position: absolute;
     top: 0;
@@ -31,8 +30,9 @@
     text-align: center;
 }
 
-.content-title{
+.hover-title{
     background-color: #ccc;
+    border-radius: 4px;
     padding: 8px;
     font-weight: bold;
 }

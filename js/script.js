@@ -1,12 +1,16 @@
-window.addEventListener("click", (e) => {
-    // console.log(e.target.id, e.target.className.baseVal)
+
+
+$.ajax({
+    url: 'https://raw.githubusercontent.com/Parajulibkrm/covid19-district-data-nepal/master/CoronaNepal.csv',
+
+}).done((res)=>{
+    getWholeData(res);
+}).catch(err=>{
+    console.log(err.responseText);
 })
 
+//@@@Helper functions@@@
 
-
-
-//@@@Helper functions
-//By how much the elements should be translated
 
 //To show province wise
 const showProvinceWise = () => {
@@ -46,20 +50,25 @@ const showDistrictWise = () => {
 //Show hovered area separately
 const showHovered = (hoveredClass) => {
 
-    if(hoveredClass == null){
-        $('.hover-details').css('display', 'none');
+    if (hoveredClass == null) {
+
+        $('.hover-title').text(`Nepal`)
+        //update table by country
         return;
     }
 
     $('.hover-details').css('display', 'block');
 
     if (isProvinceWise) {
-        //show whole province
-        $('.')
+        $('.hover-title').text(`${hoveredClass[0].toUpperCase() + hoveredClass.slice(1)} Province`)
+        //update table by province
+
 
 
     } else if (isDistricWise) {
-        //show only districtconsole.log(tempPath)
+
+        $('.hover-title').text(`${hoveredClass[0].toUpperCase() + hoveredClass.slice(1)} District`)
+        //update table by district
 
     }
 }
@@ -89,7 +98,7 @@ const hoverStateColors = {
 
 
 $('.district').hover((e) => {
-   
+
     if (isProvinceWise) {
         const province = e.target.className.baseVal.split(' ')[2]
         $(`.${province}`).css('fill-opacity', '0.7')

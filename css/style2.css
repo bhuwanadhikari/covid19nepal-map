@@ -1,0 +1,13 @@
+path{
+    fill: red;
+    stroke-width: 1px;
+    stroke: white;
+}
+
+.mapText {
+    font-size: 0.8em;
+}
+
+.mkover:hover .mkhover {
+    fill: green;
+}
