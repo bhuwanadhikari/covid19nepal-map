@@ -4,27 +4,41 @@
     position: relative;
     max-width: 850px;
     margin: auto;
-    border: 1px solid silver;
+    border: 1px solid #ccc;
+    font-family: 'Baloo Paaji 2', Arial, Helvetica, sans-serif;
 }
-
-.tooltip-details {
+.hover-details{
+    display: none;
+    padding: 8px;
     position: absolute;
-    left: 60%;
-    top: 40px;
-    
+    top: 0;
+    right: 0;
+    border: 1px solid green; 
+    border-radius: 4px;
+    margin: 10px;
+
 }
 
-.darchu {
-    fill: red;
-    
+.table-data{
+    width: 40%;
 }
 
-.temp-svg {
-    overflow: visible;
+.key{
+    font-weight: bold;
 }
 
-.temp-path{
-    overflow: visible
+.value{
+    text-align: center;
+}
+
+.content-title{
+    background-color: #ccc;
+    padding: 8px;
+    font-weight: bold;
+}
+
+.table-data{
+    padding: 3px;
 }
 
 .nepal-svg {}
@@ -142,3 +156,16 @@ a {
 #button-4:hover #underline {
     left: 0;
 }
+
+
+@media screen and (max-width: 700px) {
+   
+    .hover-details{
+        width: 70%;
+        min-width: 300px;
+        position: relative;
+        margin: 10px auto;
+    
+    }
+    
+  }

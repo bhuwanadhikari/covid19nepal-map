@@ -40,27 +40,28 @@ const showDistrictWise = () => {
     })
 }
 
+
+
+
 //Show hovered area separately
 const showHovered = (hoveredClass) => {
-        
-    // if (isProvinceWise) {
-    //     //show whole province
 
-    // } else if (isDistricWise) {
-    //     //show only districtconsole.log(tempPath)
+    if(hoveredClass == null){
+        $('.hover-details').css('display', 'none');
+        return;
+    }
 
-    //     tempPath = $('.tempPath')
+    $('.hover-details').css('display', 'block');
 
-    //     //if there is already hovered element replace the element by newly hovered
-    //     try {
-    //         $('.tempPath').replaceWith(hoveredEl)
-    //     } catch (err) {
-    //         console.log('aready hovered one', err);
-    //         tempSvg.prepend(tempPath)
-    //     }
-        
+    if (isProvinceWise) {
+        //show whole province
+        $('.')
 
-    // }
+
+    } else if (isDistricWise) {
+        //show only districtconsole.log(tempPath)
+
+    }
 }
 
 var isDistricWise = false;
@@ -88,7 +89,7 @@ const hoverStateColors = {
 
 
 $('.district').hover((e) => {
-    //Hovering over the state when the zoom is low
+   
     if (isProvinceWise) {
         const province = e.target.className.baseVal.split(' ')[2]
         $(`.${province}`).css('fill-opacity', '0.7')
@@ -96,17 +97,17 @@ $('.district').hover((e) => {
     } else {
         const districtName = e.target.className.baseVal.split(' ')[1]
         $(`.${districtName}`).css('fill-opacity', '0.7')
-
+        showHovered(districtName)
     }
 }, (e) => {
     if (isProvinceWise) {
         const province = e.target.className.baseVal.split(' ')[2]
         $(`.${province}`).css('fill-opacity', '1')
-        // showHovered(province)
+        showHovered(null)
     } else {
         const districtName = e.target.className.baseVal.split(' ')[1]
         $(`.${districtName}`).css('fill-opacity', '1')
-        // showHovered(districtName)
+        showHovered(null)
 
 
     }
