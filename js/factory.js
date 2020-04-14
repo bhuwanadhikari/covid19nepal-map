@@ -41,6 +41,7 @@ function getWholeData(inputCsv) {
             ...byProvince,
             [provinceName]: {
                 ...temp,
+                province: provinceName,
                 cases: temp ? temp.cases + cases : cases,
                 deaths: temp ? temp.deaths + deaths : deaths,
                 recovered: temp ? temp.recovered + recovered : recovered

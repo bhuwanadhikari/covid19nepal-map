@@ -42,7 +42,61 @@
     padding: 3px;
 }
 
-.nepal-svg {}
+.table-header {
+    background-color: #ccc;
+    border: 1px solid green;
+}
+
+.row-content {
+    padding: 0px 8px;
+}
+
+.tabulated-details {
+    width: 70%;
+    max-width: 900px;
+    min-width: 300px;
+    margin: auto;
+}
+
+.tabulated-details>table{
+    width: 100%;
+    border: 1px solid silver;
+}
+
+.corona-box-body{
+    width: 100%;
+}
+
+.tuple{
+    width: 100%;
+}
+
+.col1{
+    width: 31%;
+}
+
+
+.col2{
+    width: 23%;
+}
+
+.col3{
+    width: 23%;
+}
+
+.col4{
+    width: 23%;
+}
+
+.table-header{
+    font-weight: bold;
+    padding: 2px 8px;
+}
+
+.table-footer{
+    font-weight: bold;
+    padding: 2px 8px;
+}
 
 .nation_boundary {
     stroke: silver;

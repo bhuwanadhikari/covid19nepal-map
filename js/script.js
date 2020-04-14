@@ -1,10 +1,101 @@
 let covidInfo = {}
+var isDistricWise = false;
+var isProvinceWise = false;
+
+const stateColors = {
+    "province-1": '#de98eb',
+    "province-2": '#f2a55a',
+    bagmati: '#6ac45b',
+    gandaki: '#f2a55a',
+    "province-5": '#de98eb',
+    karnali: '#6ac45b',
+    sudurpashchim: '#28a6f5'
+}
+
+const hoverStateColors = {
+    "province-1": '#a668b7',
+    "province-2": '#a3b925',
+    bagmati: '#f1e900',
+    gandaki: '#ffac26',
+    "province-5": '#a668b7',
+    karnali: '#f1e900',
+    sudurpashchim: '#a3b925'
+}
+
+const updateBox = (covidData) => {
+
+    //Appending the box title
+    $('.corona-box-body').append(`
+        <tr class="table-header tuple">
+            <td class="row-content col0 ">S.N.</td>
+            <td class="row-content col1 ">${isDistricWise ? 'Districts' : 'Provinces'}</td>
+            <td class="row-content col2 ">Cases </td>
+            <td class="row-content col3 ">Deaths </td>
+            <td class="row-content col4  ">Recovered </td>
+        </tr>`
+    )
+
+
+    if (isDistricWise) {
+        let allDistData = covidData.byDistrict;
+        allDistData = allDistData.sort((a, b) => b.cases - a.cases)
+
+        for (let aDist of allDistData) {
+            $('.corona-box-body').append(`
+                 <tr class="tuple">
+                    <td class="row-content col0 ">${allDistData.indexOf(aDist)+1}</td>
+                    <td class="row-content col1 district-name ">${aDist.district[0].toUpperCase() + aDist.district.slice(1)}</td>
+                    <td class="row-content col2 cases-num ">${aDist.cases}</td>
+                    <td class="row-content col3 deaths-num ">${aDist.deaths}</td>
+                    <td class="row-content col4 recovered-num  ">${aDist.recovered}</td>
+                </tr>
+        `)
+        }
+    }
+    if (isProvinceWise) {
+        let allProvinceData = covidData.byProvince;
+        let allProvData = []
+        for (let i in allProvinceData) {
+            allProvData.push(allProvinceData[i]);
+        }
+        allProvData = allProvData.sort((a, b) => b.cases - a.cases);
+        console.log(allProvData);
+        for (let aProv of allProvData) {
+
+            $('.corona-box-body').append(`
+                <tr class="tuple">
+                    <td class="row-content col0 ">${allProvData.indexOf(aProv)+1}</td>
+                    <td class="row-content col1 province-name ">${aProv.province[0].toUpperCase() + aProv.province.slice(1)}</td>
+                    <td class="row-content col2 cases-num ">${aProv.cases}</td>
+                    <td class="row-content col3 deaths-num ">${aProv.deaths}</td>
+                    <td class="row-content col4 recovered-num  ">${aProv.recovered}</td>
+                </tr>
+            `);
+        }
+    }
+
+
+    //Appending the total footer
+    $('.corona-box-body').append(`
+        <tr class="table-footer tuple">
+        <td class="row-content col0 ">${' '}</td>
+            <td class="row-content col1 total">Total</td>
+            <td class="row-content col2 cases-total ">${covidData.byCountry.cases}</td>
+            <td class="row-content col3 deaths-total ">${covidData.byCountry.deaths}</td>
+            <td class="row-content col4 recovered-total  ">${covidData.byCountry.recovered}</td>
+        </tr>`
+    )
+
+}
 
 $.ajax({
     url: 'https://raw.githubusercontent.com/Parajulibkrm/covid19-district-data-nepal/master/CoronaNepal.csv',
-}).done((res)=>{
+}).done((res) => {
     covidInfo = getWholeData(res)
-}).catch(err=>{
+    updateTableData(null, 'country', covidInfo.byCountry)
+    updateBox(covidInfo);
+
+}).catch(err => {
     console.log(err.responseText);
 })
 
@@ -25,6 +116,8 @@ const showProvinceWise = () => {
             // console.log(err)
         }
     })
+
+    //update the big
 }
 
 //To show district wise
@@ -49,7 +142,7 @@ const showDistrictWise = () => {
 //Show hovered area separately
 const showHovered = (hoveredClass) => {
     if (hoveredClass == null) {
-            $('.hover-title').text(`Nepal`)
+        $('.hover-title').text(`Nepal`)
         //update table by country
         updateTableData(hoveredClass, 'country', covidInfo.byCountry)
         return;
@@ -74,66 +167,35 @@ const showHovered = (hoveredClass) => {
     }
 }
 
-var isDistricWise = false;
-var isProvinceWise = false;
 
-const stateColors = {
-    "province-1": '#de98eb',
-    "province-2": '#f2a55a',
-    bagmati: '#6ac45b',
-    gandaki: '#f2a55a',
-    "province-5": '#de98eb',
-    karnali: '#6ac45b',
-    sudurpashchim: '#28a6f5'
-}
-
-const hoverStateColors = {
-    "province-1": '#a668b7',
-    "province-2": '#a3b925',
-    bagmati: '#f1e900',
-    gandaki: '#ffac26',
-    "province-5": '#a668b7',
-    karnali: '#f1e900',
-    sudurpashchim: '#a3b925'
-}
 
 
 $('.district').hover((e) => {
 
     if (isProvinceWise) {
         const province = e.target.className.baseVal.split(' ')[2]
-        $(`.${province}`).css('fill-opacity', '0.7')
+        $(`.${province} `).css('fill-opacity', '0.7')
         showHovered(province)
     } else {
         const districtName = e.target.className.baseVal.split(' ')[1]
-        $(`.${districtName}`).css('fill-opacity', '0.7')
+        $(`.${districtName} `).css('fill-opacity', '0.7')
         showHovered(districtName)
     }
 }, (e) => {
     if (isProvinceWise) {
         const province = e.target.className.baseVal.split(' ')[2]
-        $(`.${province}`).css('fill-opacity', '1')
+        $(`.${province} `).css('fill-opacity', '1')
         showHovered(null)
     } else {
         const districtName = e.target.className.baseVal.split(' ')[1]
-        $(`.${districtName}`).css('fill-opacity', '1')
+        $(`.${districtName} `).css('fill-opacity', '1')
         showHovered(null)
 
 
     }
 })
 
-// //management of margin
-// $(window).bind('resize', (e) => {
-//     //change the margin
-//     const mapWidth = $('.nepal-svg').width()
-//     const windowWidth = $(window).width()
-//     const marginValue = (windowWidth - mapWidth) / 2
-//     console.log(mapWidth, windowWidth, marginValue);
-//     $('.nepal-svg').css({
-//         'left': `${marginValue}px`,
-//     })
-// })
+
 
 //State wise or district wise?
 const mapWidth = $('.nepal-svg').width()
@@ -143,6 +205,7 @@ if (mapWidth > 500) {
     isProvinceWise = false
     showDistrictWise();
     $('#map-button-text').text('Show Province Wise')
+    $('.col1').text('Districts')
 
 } else {
     //show only states with respective colors\
@@ -150,6 +213,8 @@ if (mapWidth > 500) {
     isProvinceWise = true
     showProvinceWise();
     $('#map-button-text').text('Show District Wise')
+    $('.col1').text('Provinces')
+
     // const province = e.target.className.baseVal.split(' ')[2] 
 }
 
@@ -163,9 +228,11 @@ $('.button-district').bind('click', (e) => {
     isProvinceWise = !isProvinceWise;
     if (isProvinceWise) {
         $('#map-button-text').text('Show District Wise')
+        $('.col1').text('Provinces')
         showProvinceWise()
     } else {
         $('#map-button-text').text('Show Province Wise')
+        $('.col1').text('Districts')
         showDistrictWise()
     }
 })
