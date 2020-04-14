@@ -1,10 +1,9 @@
-
+let covidInfo = {}
 
 $.ajax({
     url: 'https://raw.githubusercontent.com/Parajulibkrm/covid19-district-data-nepal/master/CoronaNepal.csv',
-
 }).done((res)=>{
-    getWholeData(res);
+    covidInfo = getWholeData(res)
 }).catch(err=>{
     console.log(err.responseText);
 })
@@ -49,11 +48,10 @@ const showDistrictWise = () => {
 
 //Show hovered area separately
 const showHovered = (hoveredClass) => {
-
     if (hoveredClass == null) {
-
-        $('.hover-title').text(`Nepal`)
+            $('.hover-title').text(`Nepal`)
         //update table by country
+        updateTableData(hoveredClass, 'country', covidInfo.byCountry)
         return;
     }
 
@@ -63,12 +61,15 @@ const showHovered = (hoveredClass) => {
         $('.hover-title').text(`${hoveredClass[0].toUpperCase() + hoveredClass.slice(1)} Province`)
         //update table by province
 
+        updateTableData(hoveredClass, 'province', covidInfo.byProvince)
 
 
     } else if (isDistricWise) {
 
+        // console.log(hoveredClass, 'district', covidInfo.byDistrict);
         $('.hover-title').text(`${hoveredClass[0].toUpperCase() + hoveredClass.slice(1)} District`)
         //update table by district
+        updateTableData(hoveredClass, 'district', covidInfo.byDistrict)
 
     }
 }
@@ -77,21 +78,21 @@ var isDistricWise = false;
 var isProvinceWise = false;
 
 const stateColors = {
-    ekk: '#de98eb',
-    dui: '#f2a55a',
+    "province-1": '#de98eb',
+    "province-2": '#f2a55a',
     bagmati: '#6ac45b',
     gandaki: '#f2a55a',
-    lumbini: '#de98eb',
+    "province-5": '#de98eb',
     karnali: '#6ac45b',
     sudurpashchim: '#28a6f5'
 }
 
 const hoverStateColors = {
-    ekk: '#a668b7',
-    dui: '#a3b925',
+    "province-1": '#a668b7',
+    "province-2": '#a3b925',
     bagmati: '#f1e900',
     gandaki: '#ffac26',
-    lumbini: '#a668b7',
+    "province-5": '#a668b7',
     karnali: '#f1e900',
     sudurpashchim: '#a3b925'
 }
