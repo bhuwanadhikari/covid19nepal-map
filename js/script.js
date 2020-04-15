@@ -113,6 +113,9 @@ const showProvinceWise = () => {
             const province = allDistricts[item].className.baseVal.split(' ')[2]
             allDistricts[item].style.fill = stateColors[province]
             allDistricts[item].style['stroke-width'] = 0
+            $('.district-label').css('display', 'none')
+            $('.province-label').css('display', 'block')
+
         } catch (err) {
             // console.log(err)
         }
@@ -131,6 +134,9 @@ const showDistrictWise = () => {
             const province = allDistricts[item].className.baseVal.split(' ')[2]
             allDistricts[item].style.fill = stateColors[province]
             allDistricts[item].style['stroke-width'] = 1
+            $('.province-label').css('display', 'none')
+            $('.district-label').css('display', 'block')
+
         } catch (err) {
             // console.log(err)
         }
@@ -198,6 +204,106 @@ $('.district').hover((e) => {
 
 
 
+
+
+
+
+
+function addDistrictLabel(p, textVal) {
+    var t = document.createElementNS("http://www.w3.org/2000/svg", "text");
+    var b = p.getBBox();
+
+
+    let trY = 0
+    let trX = 0;
+
+    if (textVal === 'DR' ||
+        textVal === 'BU' ||
+        textVal === 'MG' ||
+        textVal === 'WR' ||
+        textVal === 'CH' ||
+        textVal === 'SY' ||
+        textVal === 'MY' ||
+        textVal === 'BG' ||
+        textVal === 'NU') { trY = 7; }
+
+    if (textVal === 'DH') { trY = 25; trX = -10 }
+    if (textVal === 'RS') { trX = -15 }
+    if (textVal === 'NW') { trX = -10 }
+    if (textVal === 'DK') { trY = 10; trX = -10 }
+    if (textVal === 'RM') { trY = 20; trX = -15 }
+    if (textVal === 'AC') { trX = -10; }
+    if (textVal === 'AR') { trX = 10; }
+    if (textVal === 'TR') { trX = -10; }
+    if (textVal === 'WR') { trX = -10; }
+    if (textVal === 'OK') { trX = -10; }
+    if (textVal === 'SI') { trY = -10; }
+    if (textVal === 'MH') { trX = -5; }
+    if (textVal === 'DN') { trX = -10; }
+    if (textVal === 'RT') { trX = -10; }
+    if (textVal === 'UD') { trY = 15; }
+    if (textVal === 'KH') { trY = -5; }
+    if (textVal === 'PB') { trY = -5; }
+    if (textVal === 'PR') { trX = 5; }
+
+
+    t.setAttribute("transform", "translate(" + (b.x + b.width / 2 - 5 + trX) + " " + (b.y + b.height / 2 + 5 + trY) + ")");
+
+    if (textVal != 'KTM' && textVal != 'LL' && textVal != 'BK') {
+        t.textContent = textVal;
+
+    }
+
+    t.setAttribute("fill", "black");
+    t.setAttribute("class", "district-label");
+    t.setAttribute("font-size", "0.9em");
+    p.parentNode.insertBefore(t, p.nextSibling);
+}
+
+
+
+
+function addProvinceLabel(p, textVal) {
+
+
+
+    var t = document.createElementNS("http://www.w3.org/2000/svg", "text");
+    var b = p.getBBox();
+
+
+    let trY = 0;
+    let trX = 0;
+    let provinceLabel = '';
+    if (textVal === '1') { trY = 40; trX = 40;; provinceLabel = 'Province 1' }
+    if (textVal === '2') { trY = 0; trX = -100; provinceLabel = 'Province 2' }
+    if (textVal === '3') { trY = 25; trX = 80; provinceLabel = 'Bagmati' }
+    if (textVal === '4') { trY = 0; trX = 10; provinceLabel = 'Gandaki' }
+    if (textVal === '5') { trY = 80; trX = 10; provinceLabel = 'Province 3' }
+    if (textVal === '6') { trY = -95; trX = -30; provinceLabel = 'Karnali' }
+    if (textVal === '7') { trY = -30; trX = -120; provinceLabel = 'Sudurpashim' }
+
+    t.setAttribute("transform", "translate(" + (b.x + b.width / 2 + trX) + " " + (b.y + b.height / 2 + trY) + ")");
+    t.textContent = provinceLabel;
+
+
+
+    t.setAttribute("fill", "black");
+    t.setAttribute("class", 'province-label');
+    p.parentNode.insertBefore(t, p.nextSibling);
+}
+var districtPaths = $('.district');
+for (var p of districtPaths) {
+    addDistrictLabel(p, p.className.baseVal.split(' ')[3])
+}
+
+
+
+var provincePaths = $('.state-boundary');
+for (var p of provincePaths) {
+    addProvinceLabel(p, p.className.baseVal.split(' ')[1])
+}
+
+
 //State wise or district wise?
 const mapWidth = $('.nepal-svg').width()
 if (mapWidth > 500) {
@@ -216,8 +322,6 @@ if (mapWidth > 500) {
 
     // const province = e.target.className.baseVal.split(' ')[2] 
 }
-
-
 
 
 //Handle button press

@@ -1,3 +1,7 @@
+body {
+    font-family: 'Baloo Paaji 2', Arial, Helvetica, sans-serif;
+}
+
 .map-wrapper {
     width: 90%;
     display: block;
@@ -7,43 +11,54 @@
     border: 1px solid #ccc;
     font-family: 'Baloo Paaji 2', Arial, Helvetica, sans-serif;
 }
-.hover-details{
+
+.district-label,
+province-label {
+    width: 0;
+    height: 0;
+    pointer-events: none;
+}
+
+.province-label {
+    font-size: 20px;
+}
+
+.hover-details {
     padding: 8px;
     position: absolute;
     top: 0;
     right: 0;
-    border: 1px solid green; 
+    border: 1px solid green;
     border-radius: 4px;
     margin: 10px;
-
 }
 
-.table-data{
+
+.table-data {
     width: 40%;
     font-size: 0.9em;
 }
 
-.key{
+.key {
     font-weight: bold;
 }
 
-.value{
+.value {
     text-align: center;
 }
 
-.hover-title{
+.hover-title {
     background-color: #ccc;
     border-radius: 4px;
     padding: 8px;
     font-weight: bold;
 }
 
-.table-data{
+.table-data {
     padding: 3px;
 }
 
-.table-header {
-}
+.table-header {}
 
 .row-content {
     padding: 0px 8px;
@@ -51,61 +66,68 @@
 }
 
 .tabulated-details {
-    width: 80%;
-    max-width: 900px;
-    min-width: 300px;
+    padding-top: 20px;
+    width: 100%;
+    max-width: 800px;
+    min-width: 250px;
     margin: auto;
 }
 
-.nepal-svg{
-}
+.nepal-svg {}
 
-.tabulated-details>table{
+.tabulated-details>table {
     width: 100%;
     border: 1px solid silver;
     border-radius: 4px;
+
 }
 
-.corona-box-body{
-    width: 100%;
-}
-.tuple:nth-child(even) {background-color: white;}
-.tuple:nth-child(odd) {background: #ddd}
-
-
-.tuple{
+.corona-box-body {
     width: 100%;
 }
 
-.col0{
+.tuple:nth-child(even) {
+    background-color: white;
+}
+
+.tuple:nth-child(odd) {
+    background: #ddd
+}
+
+
+.tuple {
+    width: 100%;
+}
+
+.col0 {
     width: 9%;
 }
 
-.col1{
+.col1 {
     width: 25%;
     text-align: left;
     padding-left: 15px;
 }
 
 
-.col2{
+.col2 {
     width: 22%;
 }
 
-.col3{
+.col3 {
     width: 22%;
 }
 
-.col4{
+.col4 {
     width: 22%;
 }
 
-.table-header{
+.table-header {
     font-weight: bold;
     padding: 2px 8px;
 }
 
-.table-footer{
+.table-footer {
     font-weight: bold;
     padding: 2px 8px;
 }
@@ -163,7 +185,7 @@ path {
 
 
 
-.state_boundary:hover,
+.state-boundary:hover,
 #path4007:hover {
     fill: none
 }
@@ -227,13 +249,38 @@ a {
 
 
 @media screen and (max-width: 700px) {
-   
-    .hover-details{
-        width: 70%;
-        min-width: 300px;
+    .hover-details {
+        min-width: 250px;
+        max-width: 350px;
         position: relative;
-        margin: 10px auto;
-    
+        margin: 0 auto 10px auto;
+        left: 0;
     }
-    
-  }
+
+}
+
+/* ------------Box data------------------ */
+@media screen and (max-width: 420px) {
+    .tabulated-details>table {
+        font-size: 0.85em;
+    }
+}
+@media screen and (max-width: 380px) {
+    .tabulated-details>table {
+        font-size: 0.75em;
+    }
+}
+/* ------------Box data------------------ */
+
+
+
+@media only screen and (min-width:400px) and (max-width:600px){
+    .province-label {
+        font-size: 28px;
+    }
+}
+@media only screen and (max-width:399px){
+    .province-label {
+        font-size: 32px;
+    }
+}

@@ -8,10 +8,10 @@ function getWholeData(inputCsv) {
             const splitedArr = districtData.split(',')
             //Edit the districtName of Rukums
             if (splitedArr[2].toLowerCase() == 'eastern rukum') {
-                splitedArr[2] = 'rukumEast';
+                splitedArr[2] = 'eastRukum';
             }
             if (splitedArr[2].toLowerCase() == 'western rukum') {
-                splitedArr[2] = 'rukumWest';
+                splitedArr[2] = 'westRukum';
             }
             byDistrict.push({
                 id: splitedArr[1],
