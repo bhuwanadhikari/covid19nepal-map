@@ -1,5 +1,45 @@
 body {
     font-family: 'Baloo Paaji 2', Arial, Helvetica, sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-bar{
+    background-color: #86d07a;
+    padding: 15px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+}
+
+.site-label{
+    padding: 0 20px;
+    font-size: 1.3em;
+    color: #014401;
+    cursor: pointer;
+}
+
+.site-label:hover{
+    text-decoration: underline;
+}
+
+.header-title{
+    padding: 0 20px;
+    line-height: 40.67px;
+    font-weight: bold;
+    color: #014401
+}
+
+.dev{
+    position: absolute;
+    padding-top: 5px;
+    right: 20px;
+    line-height: 15px;
+    font-size: 0.85em;
+}
+
+.bhuwan{
+    color: blue
 }
 
 .map-wrapper {
@@ -12,8 +52,7 @@ body {
     font-family: 'Baloo Paaji 2', Arial, Helvetica, sans-serif;
 }
 
-.district-label,
-province-label {
+.district-label, .province-label {
     width: 0;
     height: 0;
     pointer-events: none;
@@ -66,11 +105,13 @@ province-label {
 }
 
 .tabulated-details {
+    padding: 10px;
     padding-top: 20px;
     width: 100%;
     max-width: 800px;
     min-width: 250px;
     margin: auto;
+    box-sizing: border-box;
 }
 
 .nepal-svg {}
