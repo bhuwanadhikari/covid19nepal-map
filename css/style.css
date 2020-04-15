@@ -43,49 +43,61 @@
 }
 
 .table-header {
-    background-color: #ccc;
-    border: 1px solid green;
 }
 
 .row-content {
     padding: 0px 8px;
+    text-align: center;
 }
 
 .tabulated-details {
-    width: 70%;
+    width: 80%;
     max-width: 900px;
     min-width: 300px;
     margin: auto;
 }
 
+.nepal-svg{
+}
+
 .tabulated-details>table{
     width: 100%;
     border: 1px solid silver;
+    border-radius: 4px;
 }
 
 .corona-box-body{
     width: 100%;
 }
+.tuple:nth-child(even) {background-color: white;}
+.tuple:nth-child(odd) {background: #ddd}
+
 
 .tuple{
     width: 100%;
 }
 
+.col0{
+    width: 9%;
+}
+
 .col1{
-    width: 31%;
+    width: 25%;
+    text-align: left;
+    padding-left: 15px;
 }
 
 
 .col2{
-    width: 23%;
+    width: 22%;
 }
 
 .col3{
-    width: 23%;
+    width: 22%;
 }
 
 .col4{
-    width: 23%;
+    width: 22%;
 }
 
 .table-header{
@@ -97,6 +109,7 @@
     font-weight: bold;
     padding: 2px 8px;
 }
+
 
 .nation_boundary {
     stroke: silver;

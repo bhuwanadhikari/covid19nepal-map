@@ -24,6 +24,9 @@ const hoverStateColors = {
 
 const updateBox = (covidData) => {
 
+    //Empty the table first
+    $('.corona-box-body').html('');
+
     //Appending the box title
     $('.corona-box-body').append(`
         <tr class="table-header tuple">
@@ -43,7 +46,7 @@ const updateBox = (covidData) => {
         for (let aDist of allDistData) {
             $('.corona-box-body').append(`
                  <tr class="tuple">
-                    <td class="row-content col0 ">${allDistData.indexOf(aDist)+1}</td>
+                    <td class="row-content col0 ">${allDistData.indexOf(aDist) + 1}</td>
                     <td class="row-content col1 district-name ">${aDist.district[0].toUpperCase() + aDist.district.slice(1)}</td>
                     <td class="row-content col2 cases-num ">${aDist.cases}</td>
                     <td class="row-content col3 deaths-num ">${aDist.deaths}</td>
@@ -51,20 +54,18 @@ const updateBox = (covidData) => {
                 </tr>
         `)
         }
-    }
-    if (isProvinceWise) {
+    } else {
         let allProvinceData = covidData.byProvince;
         let allProvData = []
         for (let i in allProvinceData) {
             allProvData.push(allProvinceData[i]);
         }
         allProvData = allProvData.sort((a, b) => b.cases - a.cases);
-        console.log(allProvData);
         for (let aProv of allProvData) {
 
             $('.corona-box-body').append(`
                 <tr class="tuple">
-                    <td class="row-content col0 ">${allProvData.indexOf(aProv)+1}</td>
+                    <td class="row-content col0 ">${allProvData.indexOf(aProv) + 1}</td>
                     <td class="row-content col1 province-name ">${aProv.province[0].toUpperCase() + aProv.province.slice(1)}</td>
                     <td class="row-content col2 cases-num ">${aProv.cases}</td>
                     <td class="row-content col3 deaths-num ">${aProv.deaths}</td>
@@ -205,7 +206,6 @@ if (mapWidth > 500) {
     isProvinceWise = false
     showDistrictWise();
     $('#map-button-text').text('Show Province Wise')
-    $('.col1').text('Districts')
 
 } else {
     //show only states with respective colors\
@@ -213,7 +213,6 @@ if (mapWidth > 500) {
     isProvinceWise = true
     showProvinceWise();
     $('#map-button-text').text('Show District Wise')
-    $('.col1').text('Provinces')
 
     // const province = e.target.className.baseVal.split(' ')[2] 
 }
@@ -226,13 +225,12 @@ if (mapWidth > 500) {
 $('.button-district').bind('click', (e) => {
     isDistricWise = !isDistricWise;
     isProvinceWise = !isProvinceWise;
+    updateBox(covidInfo);
     if (isProvinceWise) {
         $('#map-button-text').text('Show District Wise')
-        $('.col1').text('Provinces')
         showProvinceWise()
     } else {
         $('#map-button-text').text('Show Province Wise')
-        $('.col1').text('Districts')
         showDistrictWise()
     }
 })
