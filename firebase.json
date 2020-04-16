@@ -1,0 +1,11 @@
+{
+  "hosting": {
+    "site": "covid19nepal",
+    "public": "public",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}

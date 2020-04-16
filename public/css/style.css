@@ -4,7 +4,7 @@ body {
     margin: 0;
 }
 
-.nav-bar{
+.nav-bar {
     background-color: #86d07a;
     padding: 15px;
     margin-bottom: 10px;
@@ -12,25 +12,25 @@ body {
     flex-direction: row;
 }
 
-.site-label{
+.site-label {
     padding: 0 20px;
     font-size: 1.3em;
     color: #014401;
     cursor: pointer;
 }
 
-.site-label:hover{
+.site-label:hover {
     text-decoration: underline;
 }
 
-.header-title{
+.header-title {
     padding: 0 20px;
     line-height: 40.67px;
     font-weight: bold;
     color: #014401
 }
 
-.dev{
+.dev {
     position: absolute;
     padding-top: 5px;
     right: 20px;
@@ -38,7 +38,7 @@ body {
     font-size: 0.85em;
 }
 
-.bhuwan{
+.bhuwan {
     color: blue
 }
 
@@ -52,7 +52,8 @@ body {
     font-family: 'Baloo Paaji 2', Arial, Helvetica, sans-serif;
 }
 
-.district-label, .province-label {
+.district-label,
+.province-label {
     width: 0;
     height: 0;
     pointer-events: none;
@@ -306,22 +307,68 @@ a {
         font-size: 0.85em;
     }
 }
+
 @media screen and (max-width: 380px) {
     .tabulated-details>table {
         font-size: 0.75em;
     }
 }
+
 /* ------------Box data------------------ */
 
 
 
-@media only screen and (min-width:400px) and (max-width:600px){
+@media only screen and (min-width:400px) and (max-width:600px) {
     .province-label {
         font-size: 28px;
     }
 }
-@media only screen and (max-width:399px){
+
+@media only screen and (max-width:399px) {
     .province-label {
         font-size: 32px;
     }
+}
+
+
+
+@media only screen and (max-width:450px) {
+    .nav-bar {
+        padding: 15px 4px;
+        flex-direction: row;
+        line-height: 36px;
+    }
+
+    .site-label {
+        padding: 0 5px;
+        font-size: 1em;
+        color: #014401;
+        cursor: pointer;
+    }
+
+    .site-label:hover {
+        text-decoration: underline;
+    }
+
+    .header-title {
+        padding: 0 5px;
+        font-weight: bold;
+        font-size: 0.9em;
+        color: #014401
+    }
+
+
+    .dev {
+        display: none;
+    }
+
+    .dev-mobile {
+        padding: 5px;
+        right: 20px;
+        bottom: 5px;
+        line-height: 15px;
+        font-size: 0.65em;
+        text-align: center;
+    }
+
 }
