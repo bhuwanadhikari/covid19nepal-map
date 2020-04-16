@@ -278,7 +278,7 @@ function addProvinceLabel(p, textVal) {
     if (textVal === '2') { trY = 0; trX = -100; provinceLabel = 'Province 2' }
     if (textVal === '3') { trY = 25; trX = 80; provinceLabel = 'Bagmati' }
     if (textVal === '4') { trY = 0; trX = 10; provinceLabel = 'Gandaki' }
-    if (textVal === '5') { trY = 80; trX = 10; provinceLabel = 'Province 3' }
+    if (textVal === '5') { trY = 80; trX = 10; provinceLabel = 'Province 5' }
     if (textVal === '6') { trY = -95; trX = -30; provinceLabel = 'Karnali' }
     if (textVal === '7') { trY = -30; trX = -120; provinceLabel = 'Sudurpashim' }
 
