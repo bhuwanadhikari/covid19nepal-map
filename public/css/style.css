@@ -31,11 +31,16 @@ body {
 }
 
 .dev {
+    display: block;
     position: absolute;
     padding-top: 5px;
     right: 20px;
     line-height: 15px;
     font-size: 0.85em;
+}
+
+.dev-mobile {
+    display: none;
 }
 
 .bhuwan {
@@ -332,7 +337,40 @@ a {
 
 
 
-@media only screen and (max-width:450px) {
+
+
+@media only screen and (min-width:499px) and (max-width:700px) {
+    .nav-bar {
+        padding: 15px 4px;
+        flex-direction: row;
+        line-height: 36px;
+    }
+
+    .site-label {
+        padding: 0 5px;
+        font-size: 1em;
+        color: #014401;
+        cursor: pointer;
+    }
+
+    .site-label:hover {
+        text-decoration: underline;
+    }
+
+    .header-title {
+        padding: 0 5px;
+        font-weight: bold;
+        font-size: 0.9em;
+        color: #014401
+    }
+
+    .dev{
+        font-size: 0.7em;
+    }
+}
+
+
+@media only screen and (max-width:500px) {
     .nav-bar {
         padding: 15px 4px;
         flex-direction: row;
@@ -363,10 +401,8 @@ a {
     }
 
     .dev-mobile {
+        display: block;
         padding: 5px;
-        right: 20px;
-        bottom: 5px;
-        line-height: 15px;
         font-size: 0.65em;
         text-align: center;
     }
