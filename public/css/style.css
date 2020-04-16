@@ -361,6 +361,7 @@ a {
         padding: 0 5px;
         font-weight: bold;
         font-size: 0.9em;
+        line-height: 37px;
         color: #014401
     }
 
@@ -392,7 +393,8 @@ a {
         padding: 0 5px;
         font-weight: bold;
         font-size: 0.9em;
-        color: #014401
+        color: #014401;
+        line-height: 37px;
     }
 
 
