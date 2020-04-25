@@ -91,14 +91,16 @@ const updateBox = (covidData) => {
 
 const updateFillColors = (dWise, pWise) => {
     if (dWise) {
-        getMaxValue(covidInfo, 'district')
+        const maxVal = getMaxValue(covidInfo, 'district')
         console.log('woring from here');
         const allDistricts = $('.district')
         for (let el in allDistricts) {
             if (el < 77) {
-                allDistricts[el].style.fill = getConcColor(covidInfo, 'district', allDistricts[el].className.baseVal.split(' ')[2])
+                allDistricts[el].style.fill = getConcColor(covidInfo, 'district', allDistricts[el].className.baseVal.split(' ')[1], maxVal)
             }
         }
+
+    } else {
 
     }
 }
@@ -108,7 +110,7 @@ $.ajax({
     covidInfo = getWholeData(res)
     updateTableData(null, 'country', covidInfo.byCountry)
     updateBox(covidInfo);
-    // updateFillColors(isDistricWise, isProvinceWise)
+    updateFillColors(isDistricWise, isProvinceWise)
 
 }).catch(err => {
     console.log(err.responseText);
@@ -223,7 +225,7 @@ $('.district').hover((e) => {
 
 
 
-function addDistrictLabel(p, textVal) {
+function addDistrictLabel(p, textVal, dName) {
     var t = document.createElementNS("http://www.w3.org/2000/svg", "text");
     var b = p.getBBox();
 
@@ -270,6 +272,7 @@ function addDistrictLabel(p, textVal) {
 
     t.setAttribute("fill", "black");
     t.setAttribute("class", "district-label");
+    t.setAttribute("class", `${dName}-label`);
     t.setAttribute("font-size", "0.9em");
     p.parentNode.insertBefore(t, p.nextSibling);
 }
@@ -307,7 +310,7 @@ function addProvinceLabel(p, textVal) {
 }
 var districtPaths = $('.district');
 for (var p of districtPaths) {
-    addDistrictLabel(p, p.className.baseVal.split(' ')[3])
+    addDistrictLabel(p, p.className.baseVal.split(' ')[3], p.className.baseVal.split(' ')[1])
 }
 
 

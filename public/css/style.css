@@ -62,11 +62,14 @@ body {
     width: 0;
     height: 0;
     pointer-events: none;
+    color: black;
 }
 
 .province-label {
     font-size: 20px;
 }
+
+
 
 .hover-details {
     padding: 8px;
@@ -191,7 +194,7 @@ path:hover {
 
 path {
     stroke-width: 2px;
-    stroke: white;
+    stroke: silver;
 }
 
 .district {

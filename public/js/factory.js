@@ -124,27 +124,61 @@ const getMaxValue = (data, displayType) => {
 }
 
 
+const concertrationColors = {
+    zero: '#f8f8f8',
+    low: '#ef9c86',
+    medium: '#eb706b',
+    high: '#e64952',
+    higher: '#af3435'
+}
+
 const getConcColor = (data, displayType, regionName, maxVal) => {
-    const concertrationColors = {
-        zero: '#f8f8f8',
-        low: '#ef9c86',
-        medium: '#eb706b',
-        high: '#e64952',
-        higher: '#af3435'
-
-    }
 
 
 
+    let fillColor = 'white';
     if (displayType === 'district') {
-        //if shouwn disrict wise
-    
-    } else {
-        //fi shown 
-    }
-    return maxVal
+        //if shown disrict wise
+        const distData = data.byDistrict;
+        const district = distData.find(el => el.district === regionName)
+        const q = district.cases / maxVal * 100;
+        $(`.${regionName}-label`)[0].style.fill = 'black'
 
-    return 'red';
+        if (q > 0 && q <= 25) {
+            fillColor = concertrationColors.low;
+        } else if (q > 25 && q <= 50) {
+            fillColor = concertrationColors.medium;
+        } else if (q > 50 && q <= 75) {
+            fillColor = concertrationColors.high;
+        } else if (q > 75 && q <= 100) {
+            fillColor = concertrationColors.higher;
+        } else {
+            $(`.${regionName}-label`)[0].style.fill = 'black'
+        }
+
+        $(`.${district.district}`)[0].style.fill = fillColor;
+
+    } else {
+        //if shown  province wise
+        const provData = data.byProvince;
+        const province = provData.find(el => provData[el] === regionName)
+        const p = province.cases / maxVal * 100;
+
+        $(`.${regionName}-label`)[0].style.fill = 'white'
+        if (p > 0 && p <= 25) {
+            fillColor = concertrationColors.low;
+        } else if (p > 25 && p <= 50) {
+            fillColor = concertrationColors.medium;
+        } else if (p > 50 && p <= 75) {
+            fillColor = concertrationColors.high;
+        } else if (p > 75 && p <= 100) {
+            fillColor = concertrationColors.higher;
+        } else {
+            $(`.${regionName}-label`)[0].style.fill = 'black'
+        }
+
+        $(`.${province.province}`)[0].style.fill = fillColor;
+    }
 }
 
 
