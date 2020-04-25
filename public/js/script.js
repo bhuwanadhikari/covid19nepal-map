@@ -89,12 +89,26 @@ const updateBox = (covidData) => {
 
 }
 
+const updateFillColors = (dWise, pWise) => {
+    if (dWise) {
+        getMaxValue(covidInfo, 'district')
+        console.log('woring from here');
+        const allDistricts = $('.district')
+        for (let el in allDistricts) {
+            if (el < 77) {
+                allDistricts[el].style.fill = getConcColor(covidInfo, 'district', allDistricts[el].className.baseVal.split(' ')[2])
+            }
+        }
+
+    }
+}
 $.ajax({
     url: 'https://raw.githubusercontent.com/Parajulibkrm/covid19-district-data-nepal/master/CoronaNepal.csv',
 }).done((res) => {
     covidInfo = getWholeData(res)
     updateTableData(null, 'country', covidInfo.byCountry)
     updateBox(covidInfo);
+    // updateFillColors(isDistricWise, isProvinceWise)
 
 }).catch(err => {
     console.log(err.responseText);

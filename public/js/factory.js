@@ -99,4 +99,52 @@ const updateTableData = (className, whatWise, data) => {
     }
 }
 
+const getMaxValue = (data, displayType) => {
+
+    console.log(data);
+    let maxVal = 0;
+    if (displayType === 'district') {
+        const distData = data.byDistrict;
+        //get max-cases distirct
+        for (let aDistrict of distData) {
+            if (maxVal < aDistrict.cases) {
+                maxVal = aDistrict.cases;
+            }
+        }
+
+    } else {
+        const provData = data.byProvince;
+        for (let aProv of provData) {
+            if (maxVal < aProv.cases) {
+                maxVal = aProv.cases;
+            }
+        }
+    }
+    return maxVal
+}
+
+
+const getConcColor = (data, displayType, regionName, maxVal) => {
+    const concertrationColors = {
+        zero: '#f8f8f8',
+        low: '#ef9c86',
+        medium: '#eb706b',
+        high: '#e64952',
+        higher: '#af3435'
+
+    }
+
+
+
+    if (displayType === 'district') {
+        //if shouwn disrict wise
+    
+    } else {
+        //fi shown 
+    }
+    return maxVal
+
+    return 'red';
+}
+
 
