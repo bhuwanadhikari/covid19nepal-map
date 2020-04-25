@@ -90,6 +90,7 @@ const updateBox = (covidData) => {
 }
 
 const updateFillColors = (dWise, pWise) => {
+
     if (dWise) {
         const maxVal = getMaxValue(covidInfo, 'district')
         console.log('woring from here');
@@ -100,23 +101,33 @@ const updateFillColors = (dWise, pWise) => {
             }
         }
 
-    } else {
-
+    }
+    if (pWise) {
+        const maxVal = getMaxValue(covidInfo, 'province')
+        console.log(maxVal);
+        console.log('woring from here');
+        const allDistricts = $('.district')
+        for (let el in allDistricts) {
+            if (el < 77) {
+                allDistricts[el].style.fill = getConcColor(covidInfo, 'province', allDistricts[el].className.baseVal.split(' ')[2], maxVal)
+            }
+        }
     }
 }
+
+//Fetch csv data
 $.ajax({
     url: 'https://raw.githubusercontent.com/Parajulibkrm/covid19-district-data-nepal/master/CoronaNepal.csv',
-}).done((res) => {
+}).then((res) => {
     covidInfo = getWholeData(res)
     updateTableData(null, 'country', covidInfo.byCountry)
     updateBox(covidInfo);
-    updateFillColors(isDistricWise, isProvinceWise)
 
+    updateFillColors(isDistricWise, isProvinceWise)
 }).catch(err => {
     console.log(err.responseText);
 })
 
-//@@@Helper functions@@@
 
 
 //To show province wise
@@ -128,7 +139,7 @@ const showProvinceWise = () => {
         try {
             const province = allDistricts[item].className.baseVal.split(' ')[2]
             allDistricts[item].style.fill = stateColors[province]
-            allDistricts[item].style['stroke-width'] = 0
+            allDistricts[item].style['stroke-width'] = '0px'
             $('.district-label').css('display', 'none')
             $('.province-label').css('display', 'block')
 
@@ -149,7 +160,7 @@ const showDistrictWise = () => {
         try {
             const province = allDistricts[item].className.baseVal.split(' ')[2]
             allDistricts[item].style.fill = stateColors[province]
-            allDistricts[item].style['stroke-width'] = 1
+            allDistricts[item].style['stroke-width'] = '1px'
             $('.province-label').css('display', 'none')
             $('.district-label').css('display', 'block')
 
@@ -271,8 +282,7 @@ function addDistrictLabel(p, textVal, dName) {
     }
 
     t.setAttribute("fill", "black");
-    t.setAttribute("class", "district-label");
-    t.setAttribute("class", `${dName}-label`);
+    t.setAttribute("class", `district-label ${dName}-label`);
     t.setAttribute("font-size", "0.9em");
     p.parentNode.insertBefore(t, p.nextSibling);
 }
@@ -280,7 +290,7 @@ function addDistrictLabel(p, textVal, dName) {
 
 
 
-function addProvinceLabel(p, textVal) {
+function addProvinceLabel(p, textVal, pName) {
 
 
 
@@ -305,7 +315,7 @@ function addProvinceLabel(p, textVal) {
 
 
     t.setAttribute("fill", "black");
-    t.setAttribute("class", 'province-label');
+    t.setAttribute("class", `province-label ${pName}-label`);
     p.parentNode.insertBefore(t, p.nextSibling);
 }
 var districtPaths = $('.district');
@@ -317,12 +327,16 @@ for (var p of districtPaths) {
 
 var provincePaths = $('.state-boundary');
 for (var p of provincePaths) {
-    addProvinceLabel(p, p.className.baseVal.split(' ')[1])
+    addProvinceLabel(p, p.className.baseVal.split(' ')[1], p.className.baseVal.split(' ')[2])
 }
 
 
 //State wise or district wise?
 const mapWidth = $('.nepal-svg').width()
+
+$('.state-boundary').css('stroke', '#87a0e9')
+$('.nation_boundary').css('stroke', '#87a0e9')
+$('.nation_boundary').css('stroke-width', '2px')
 if (mapWidth > 500) {
     //show districts with their respective colors
     isDistricWise = true
@@ -346,7 +360,9 @@ if (mapWidth > 500) {
 $('.button-district').bind('click', (e) => {
     isDistricWise = !isDistricWise;
     isProvinceWise = !isProvinceWise;
+
     updateBox(covidInfo);
+
     if (isProvinceWise) {
         $('#map-button-text').text('Show District Wise')
         showProvinceWise()
@@ -354,6 +370,8 @@ $('.button-district').bind('click', (e) => {
         $('#map-button-text').text('Show Province Wise')
         showDistrictWise()
     }
+    updateFillColors(isDistricWise, isProvinceWise)
+
 })
 
 

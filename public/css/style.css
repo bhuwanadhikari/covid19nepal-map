@@ -199,6 +199,7 @@ path {
 
 .district {
     stroke-width: 2px;
+    stroke: #87a0e9
 }
 
 .district:hover .district {

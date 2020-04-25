@@ -101,7 +101,6 @@ const updateTableData = (className, whatWise, data) => {
 
 const getMaxValue = (data, displayType) => {
 
-    console.log(data);
     let maxVal = 0;
     if (displayType === 'district') {
         const distData = data.byDistrict;
@@ -114,9 +113,9 @@ const getMaxValue = (data, displayType) => {
 
     } else {
         const provData = data.byProvince;
-        for (let aProv of provData) {
-            if (maxVal < aProv.cases) {
-                maxVal = aProv.cases;
+        for (let i in provData) {
+            if (maxVal < provData[i].cases) {
+                maxVal = provData[i].cases;
             }
         }
     }
@@ -129,42 +128,48 @@ const concertrationColors = {
     low: '#ef9c86',
     medium: '#eb706b',
     high: '#e64952',
-    higher: '#af3435'
+    higher: '#cb3e3f'
 }
 
 const getConcColor = (data, displayType, regionName, maxVal) => {
-
-
-
     let fillColor = 'white';
     if (displayType === 'district') {
         //if shown disrict wise
         const distData = data.byDistrict;
         const district = distData.find(el => el.district === regionName)
-        const q = district.cases / maxVal * 100;
+        const q = parseInt(district.cases / maxVal * 100);
         $(`.${regionName}-label`)[0].style.fill = 'black'
-
+        console.log(q);
         if (q > 0 && q <= 25) {
+
+        console.log('distric is displaying');
             fillColor = concertrationColors.low;
         } else if (q > 25 && q <= 50) {
             fillColor = concertrationColors.medium;
         } else if (q > 50 && q <= 75) {
             fillColor = concertrationColors.high;
+            // $(`.${regionName}-label`)[0].style.fill = 'white'
+
         } else if (q > 75 && q <= 100) {
             fillColor = concertrationColors.higher;
-        } else {
-            $(`.${regionName}-label`)[0].style.fill = 'black'
-        }
+            // $(`.${regionName}-label`)[0].style.fill = 'white'
 
-        $(`.${district.district}`)[0].style.fill = fillColor;
+        }
+        // $(`.${district.district}`)[0].style.fill = fillColor;
+        return fillColor
 
     } else {
         //if shown  province wise
+        let province = null
         const provData = data.byProvince;
-        const province = provData.find(el => provData[el] === regionName)
-        const p = province.cases / maxVal * 100;
+        for(let prov in provData){
+            if(provData[prov].province === regionName){
+                 province = provData[prov]
+            }
+        }
+        const p = parseInt(province.cases / maxVal * 100);
 
-        $(`.${regionName}-label`)[0].style.fill = 'white'
+        // $(`.${regionName}-label`)[0].style.fill = 'white'
         if (p > 0 && p <= 25) {
             fillColor = concertrationColors.low;
         } else if (p > 25 && p <= 50) {
@@ -174,10 +179,11 @@ const getConcColor = (data, displayType, regionName, maxVal) => {
         } else if (p > 75 && p <= 100) {
             fillColor = concertrationColors.higher;
         } else {
-            $(`.${regionName}-label`)[0].style.fill = 'black'
+            // $(`.${regionName}-label`)[0].style.fill = 'black'
         }
 
-        $(`.${province.province}`)[0].style.fill = fillColor;
+        // $(`.${province.province}`).css('fill', fillColor);
+        return fillColor
     }
 }
 
