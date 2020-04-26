@@ -70,6 +70,16 @@ body {
 }
 
 
+.info-text{
+    position: relative;
+    padding-bottom: 5px;
+    line-height: 1em;
+    font-size: 0.8em;
+    display: block;
+    text-align: center;
+
+}
+
 
 .hover-details {
     padding: 8px;
