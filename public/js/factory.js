@@ -1,7 +1,33 @@
+
+
 function getWholeData(inputCsv) {
+    // function getWholeData(inputJson) {
     /* Split input string by `,` and clean up each item */
-    const arrayCsv = inputCsv.split('\n').map(s => s.replace(/"/gi, '').trim())
+    // console.log(inputJson);
     const byDistrict = [];
+
+
+    // const jillaharu = []
+    // const jillEls = $('.district');
+    // for (let jilla of jillEls){
+    //     const jillaName = jilla.className.baseVal.split(' ')[1];
+    //     for( let aP of inputJson){
+    //         for(let aD of aP.districtData){
+    //             if(aD.confirmed>0){
+    //                 byDistrict.push({
+    //                     id: 10,
+    //                     district: aD.district,
+    //                     cases: aD.confirmed,
+    //                     deaths: ,
+    //                     recovered: ,
+    //                 })
+    //             }
+    //         }
+    //     }
+    // }
+
+
+    const arrayCsv = inputCsv.split('\n').map(s => s.replace(/"/gi, '').trim())
     let i = 0;
     for (let districtData of arrayCsv) {
         if (i > arrayCsv.length - 77 - 1) {
@@ -139,10 +165,8 @@ const getConcColor = (data, displayType, regionName, maxVal) => {
         const district = distData.find(el => el.district === regionName)
         const q = parseInt(district.cases / maxVal * 100);
         $(`.${regionName}-label`)[0].style.fill = 'black'
-        console.log(q);
         if (q > 0 && q <= 25) {
 
-        console.log('distric is displaying');
             fillColor = concertrationColors.low;
         } else if (q > 25 && q <= 50) {
             fillColor = concertrationColors.medium;
@@ -162,9 +186,9 @@ const getConcColor = (data, displayType, regionName, maxVal) => {
         //if shown  province wise
         let province = null
         const provData = data.byProvince;
-        for(let prov in provData){
-            if(provData[prov].province === regionName){
-                 province = provData[prov]
+        for (let prov in provData) {
+            if (provData[prov].province === regionName) {
+                province = provData[prov]
             }
         }
         const p = parseInt(province.cases / maxVal * 100);

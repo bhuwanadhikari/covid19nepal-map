@@ -93,7 +93,6 @@ const updateFillColors = (dWise, pWise) => {
 
     if (dWise) {
         const maxVal = getMaxValue(covidInfo, 'district')
-        console.log('woring from here');
         const allDistricts = $('.district')
         for (let el in allDistricts) {
             if (el < 77) {
@@ -104,8 +103,6 @@ const updateFillColors = (dWise, pWise) => {
     }
     if (pWise) {
         const maxVal = getMaxValue(covidInfo, 'province')
-        console.log(maxVal);
-        console.log('woring from here');
         const allDistricts = $('.district')
         for (let el in allDistricts) {
             if (el < 77) {
@@ -115,11 +112,26 @@ const updateFillColors = (dWise, pWise) => {
     }
 }
 
-//Fetch csv data
+// Fetch csv data
+// $.ajax({
+//     url: 'https://api.nepalcovid19.org/v2/state_district_wise.json',
+// }).then((res) => {
+//     covidInfo = getWholeData(res)
+//     console.log(covidInfo);
+//     updateTableData(null, 'country', covidInfo.byCountry)
+//     updateBox(covidInfo);
+
+//     updateFillColors(isDistricWise, isProvinceWise)
+// }).catch(err => {
+//     console.log(err.responseText);
+// })
+
+
 $.ajax({
     url: 'https://raw.githubusercontent.com/Parajulibkrm/covid19-district-data-nepal/master/CoronaNepal.csv',
 }).then((res) => {
     covidInfo = getWholeData(res)
+    console.log(covidInfo);
     updateTableData(null, 'country', covidInfo.byCountry)
     updateBox(covidInfo);
 
@@ -127,9 +139,6 @@ $.ajax({
 }).catch(err => {
     console.log(err.responseText);
 })
-
-
-
 //To show province wise
 const showProvinceWise = () => {
     const allDistricts = $('.district')
