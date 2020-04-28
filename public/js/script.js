@@ -128,7 +128,7 @@ const updateFillColors = (dWise, pWise) => {
 
 
 $.ajax({
-    url: 'https://raw.githubusercontent.com/Parajulibkrm/covid19-district-data-nepal/master/CoronaNepal.csv',
+    url: 'http://127.0.0.1:5000/corona-data',
 }).then((res) => {
     covidInfo = getWholeData(res)
     console.log(covidInfo);

@@ -27,26 +27,27 @@ function getWholeData(inputCsv) {
     // }
 
 
-    const arrayCsv = inputCsv.split('\n').map(s => s.replace(/"/gi, '').trim())
+    // const arrayCsv = inputCsv.split('\n').map(s => s.replace(/"/gi, '').trim())
+    const arrayCsv = inputCsv
     let i = 0;
     for (let districtData of arrayCsv) {
-        if (i > arrayCsv.length - 77 - 1) {
-            const splitedArr = districtData.split(',')
-            //Edit the districtName of Rukums
-            if (splitedArr[2].toLowerCase() == 'eastern rukum') {
-                splitedArr[2] = 'eastRukum';
-            }
-            if (splitedArr[2].toLowerCase() == 'western rukum') {
-                splitedArr[2] = 'westRukum';
-            }
-            byDistrict.push({
-                id: splitedArr[1],
-                district: splitedArr[2][0].toLowerCase() + splitedArr[2].slice(1),
-                cases: parseInt(splitedArr[3]),
-                deaths: parseInt(splitedArr[4]),
-                recovered: parseInt(splitedArr[5])
-            })
+        // if (i > arrayCsv.length - 77 - 1) {
+        const splitedArr = districtData.split(',')
+        //Edit the districtName of Rukums
+        if (splitedArr[2].toLowerCase() == 'eastern rukum') {
+            splitedArr[2] = 'eastRukum';
         }
+        if (splitedArr[2].toLowerCase() == 'western rukum') {
+            splitedArr[2] = 'westRukum';
+        }
+        byDistrict.push({
+            id: splitedArr[1],
+            district: splitedArr[2][0].toLowerCase() + splitedArr[2].slice(1),
+            cases: parseInt(splitedArr[3]),
+            deaths: parseInt(splitedArr[4]),
+            recovered: parseInt(splitedArr[5])
+        })
+        // }
 
         i++;
     }
