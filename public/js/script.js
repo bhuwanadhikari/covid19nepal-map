@@ -128,7 +128,8 @@ const updateFillColors = (dWise, pWise) => {
 
 
 $.ajax({
-    url: 'http://127.0.0.1:5000/corona-data',
+    url: 'https://covid19nepal-api.herokuapp.com/corona-data',
+    // url: 'http://127.0.0.1:5000/corona-data',
 }).then((res) => {
     covidInfo = getWholeData(res)
     console.log(covidInfo);
