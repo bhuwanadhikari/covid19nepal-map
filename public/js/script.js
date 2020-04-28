@@ -103,7 +103,7 @@ const updateFillColors = (dWise, pWise) => {
     }
 }
 $.ajax({
-    url: 'https://raw.githubusercontent.com/Parajulibkrm/covid19-district-data-nepal/master/CoronaNepal.csv',
+    url: 'https://covid19nepal-api.herokuapp.com/corona-data',
 }).done((res) => {
     covidInfo = getWholeData(res)
     updateTableData(null, 'country', covidInfo.byCountry)
