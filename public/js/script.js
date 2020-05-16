@@ -44,6 +44,8 @@ const updateBox = (covidData) => {
         allDistData = allDistData.sort((a, b) => b.cases - a.cases)
 
         for (let aDist of allDistData) {
+
+            //append tuple district
             $('.corona-box-body').append(`
                  <tr class="tuple">
                     <td class="row-content col0 ">${allDistData.indexOf(aDist) + 1}</td>
@@ -62,7 +64,7 @@ const updateBox = (covidData) => {
         }
         allProvData = allProvData.sort((a, b) => b.cases - a.cases);
         for (let aProv of allProvData) {
-
+            //append tuple province
             $('.corona-box-body').append(`
                 <tr class="tuple">
                     <td class="row-content col0 ">${allProvData.indexOf(aProv) + 1}</td>

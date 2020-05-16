@@ -4,6 +4,8 @@ body {
     margin: 0;
 }
 
+
+
 .nav-bar {
     background-color: #86d07a;
     padding: 15px;
@@ -27,14 +29,16 @@ body {
     padding: 0 20px;
     line-height: 40.67px;
     font-weight: bold;
-    color: #014401
+    color: #014401;
+    font-size: 16px;
+    margin: 0px;
 }
 
 .dev {
     display: block;
     position: absolute;
     padding-top: 5px;
-    right: 20px;
+    right: 40px;
     line-height: 15px;
     font-size: 0.85em;
 }

@@ -154,37 +154,61 @@ const getMaxValue = (data, displayType) => {
 
 
 const concertrationColors = {
-    zero: '#f8f8f8',
-    low: '#ef9c86',
-    medium: '#eb706b',
-    high: '#e64952',
-    higher: '#cb3e3f'
+    zero: '#fff',
+    two: '#fab14b',
+    four: '#f68c3b',
+    six: '#f14b32',
+    eight: '#e4432f',
+    ten: '#be3626'
 }
 
+
+
 const getConcColor = (data, displayType, regionName, maxVal) => {
-    let fillColor = 'white';
+    // let fillColor = 'white';
+
+    const fillColor = (qVal) => {
+        console.log(qVal)
+        if (qVal === 0) return concertrationColors.zero;
+        if (qVal > 0 && qVal <= 20) return concertrationColors.two;
+        if (qVal > 20 && qVal <= 40) return concertrationColors.four;
+        if (qVal > 40 && qVal <= 60) return concertrationColors.six;
+        if (qVal > 60 && qVal <= 80) return concertrationColors.eight;
+        if (qVal > 80 && qVal <= 100) return concertrationColors.ten;
+
+        return concertrationColors.zero;
+    }
+    // console.log(reqColor)
+
+
+
     if (displayType === 'district') {
         //if shown disrict wise
         const distData = data.byDistrict;
         const district = distData.find(el => el.district === regionName)
         const q = parseInt(district.cases / maxVal * 100);
-        $(`.${regionName}-label`)[0].style.fill = 'black'
-        if (q > 0 && q <= 25) {
+        $(`.${regionName}-label`)[0].style.fill = 'black';
 
-            fillColor = concertrationColors.low;
-        } else if (q > 25 && q <= 50) {
-            fillColor = concertrationColors.medium;
-        } else if (q > 50 && q <= 75) {
-            fillColor = concertrationColors.high;
-            // $(`.${regionName}-label`)[0].style.fill = 'white'
 
-        } else if (q > 75 && q <= 100) {
-            fillColor = concertrationColors.higher;
-            // $(`.${regionName}-label`)[0].style.fill = 'white'
 
-        }
+
+        // if (q === 0) {
+        //     fillColor = concertrationColors.zero
+        // } else if (q > 0 && q <= 25) {
+
+        //     fillColor = concertrationColors.low;
+        // } else if (q > 25 && q <= 50) {
+        //     fillColor = concertrationColors.medium;
+        // } else if (q > 50 && q <= 75) {
+        //     fillColor = concertrationColors.high;
+        //     // $(`.${regionName}-label`)[0].style.fill = 'white'
+        // } else if (q > 75 && q <= 100) {
+        //     fillColor = concertrationColors.higher;
+        //     // $(`.${regionName}-label`)[0].style.fill = 'white'
+
+        // }
         // $(`.${district.district}`)[0].style.fill = fillColor;
-        return fillColor
+        return fillColor(q)
 
     } else {
         //if shown  province wise
@@ -198,21 +222,26 @@ const getConcColor = (data, displayType, regionName, maxVal) => {
         const p = parseInt(province.cases / maxVal * 100);
 
         // $(`.${regionName}-label`)[0].style.fill = 'white'
-        if (p > 0 && p <= 25) {
-            fillColor = concertrationColors.low;
-        } else if (p > 25 && p <= 50) {
-            fillColor = concertrationColors.medium;
-        } else if (p > 50 && p <= 75) {
-            fillColor = concertrationColors.high;
-        } else if (p > 75 && p <= 100) {
-            fillColor = concertrationColors.higher;
-        } else {
-            // $(`.${regionName}-label`)[0].style.fill = 'black'
-        }
+
+        // if (q === 0) {
+        //     fillColor = concertrationColors.zero
+        // } else if (p > 0 && p <= 25) {
+        //     fillColor = concertrationColors.low;
+        // } else if (p > 25 && p <= 50) {
+        //     fillColor = concertrationColors.medium;
+        // } else if (p > 50 && p <= 75) {
+        //     fillColor = concertrationColors.high;
+        // } else if (p > 75 && p <= 100) {
+        //     fillColor = concertrationColors.higher;
+        // } else {
+        //     // $(`.${regionName}-label`)[0].style.fill = 'black'
+        // }
 
         // $(`.${province.province}`).css('fill', fillColor);
-        return fillColor
+        return fillColor(p)
     }
 }
+
+
 
 
