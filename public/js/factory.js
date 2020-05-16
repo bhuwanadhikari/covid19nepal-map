@@ -109,18 +109,21 @@ const updateTableData = (className, whatWise, data) => {
     if (whatWise === 'district') {
         const districtData = data.find(el => el.district == className);
         $('.cases-value').text(districtData.cases)
-        $('.death-value').text(districtData.deaths)
+        $('.deaths-value').text(districtData.deaths)
         $('.recovered-value').text(districtData.recovered)
     }
     if (whatWise === 'province') {
         $('.cases-value').text(data[className].cases)
-        $('.death-value').text(data[className].deaths)
+        $('.deaths-value').text(data[className].deaths)
         $('.recovered-value').text(data[className].recovered)
     }
     if (whatWise === 'country') {
 
+
+        console.log(" showing country wise")
+        console.log(data.deaths)
         $('.cases-value').text(data.cases)
-        $('.death-value').text(data.deaths)
+        $('.deaths-value').text(data.deaths)
         $('.recovered-value').text(data.recovered)
 
     }
