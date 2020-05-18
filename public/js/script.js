@@ -139,7 +139,7 @@ $.ajax({
     console.log(covidInfo);
     updateTableData(null, 'country', covidInfo.byCountry)
     updateBox(covidInfo);
-
+    $('.spinner').css('display', 'none')
     updateFillColors(isDistricWise, isProvinceWise)
 }).catch(err => {
     console.log(err.responseText);

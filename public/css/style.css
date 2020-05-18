@@ -3,6 +3,20 @@ body {
     padding: 0;
     margin: 0;
 }
+body::-webkit-scrollbar {
+    width: 0.4em;
+}
+body::-webkit-scrollbar-track {
+
+    width: 0.5em;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+body::-webkit-scrollbar-thumb {
+
+    width: 0.5em;
+    background-color: #62a059;
+    outline: 1px solid #62a059;
+}
 
 
 
@@ -51,6 +65,19 @@ body {
     color: blue
 }
 
+.spinner {
+    display: block;
+    margin: auto;
+    position: absolute;
+    left: calc(50vw - 25px);
+    height: 50px;
+    top: 25vh;
+}
+
+.spinner>img {
+    width: 50px
+}
+
 .map-wrapper {
     width: 90%;
     display: block;
@@ -74,7 +101,7 @@ body {
 }
 
 
-.info-text{
+.info-text {
     position: relative;
     padding-bottom: 5px;
     line-height: 1em;
@@ -383,7 +410,7 @@ a {
         color: #014401
     }
 
-    .dev{
+    .dev {
         font-size: 0.7em;
     }
 }
