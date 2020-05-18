@@ -256,8 +256,7 @@ function addDistrictLabel(p, textVal, dName) {
     let trY = 0
     let trX = 0;
 
-    if (textVal === 'DR' ||
-        textVal === 'BU' ||
+    if (textVal === 'BU' ||
         textVal === 'MG' ||
         textVal === 'WR' ||
         textVal === 'CH' ||
@@ -267,6 +266,7 @@ function addDistrictLabel(p, textVal, dName) {
         textVal === 'NU') { trY = 7; }
 
     if (textVal === 'DH') { trY = 25; trX = -10 }
+    if (textVal === 'DR') { trY = 25; trX = 0 }
     if (textVal === 'RS') { trX = -15 }
     if (textVal === 'NW') { trX = -10 }
     if (textVal === 'DK') { trY = 10; trX = -10 }
