@@ -22,6 +22,8 @@ const hoverStateColors = {
     sudurpashchim: '#a3b925'
 }
 
+
+//Update the table showing all data
 const updateBox = (covidData) => {
 
     //Empty the table first
@@ -314,12 +316,12 @@ function addProvinceLabel(p, textVal, pName) {
     let trX = 0;
     let provinceLabel = '';
     if (textVal === '1') { trY = 40; trX = 40;; provinceLabel = 'Province 1' }
-    if (textVal === '2') { trY = 0; trX = -100; provinceLabel = 'Province 2' }
+    if (textVal === '2') { trY = 5; trX = -90; provinceLabel = 'Province 2' }
     if (textVal === '3') { trY = 25; trX = 80; provinceLabel = 'Bagmati' }
     if (textVal === '4') { trY = 0; trX = 10; provinceLabel = 'Gandaki' }
-    if (textVal === '5') { trY = 80; trX = 10; provinceLabel = 'Province 5' }
+    if (textVal === '5') { trY = 80; trX = 0; provinceLabel = 'Province 5' }
     if (textVal === '6') { trY = -95; trX = -30; provinceLabel = 'Karnali' }
-    if (textVal === '7') { trY = -30; trX = -120; provinceLabel = 'Sudurpashim' }
+    if (textVal === '7') { trY = -26; trX = -130; provinceLabel = 'Sudurpashim' }
 
     t.setAttribute("transform", "translate(" + (b.x + b.width / 2 + trX) + " " + (b.y + b.height / 2 + trY) + ")");
     t.textContent = provinceLabel;
