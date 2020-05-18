@@ -454,4 +454,14 @@ a {
         text-align: center;
     }
 
+
+.spinner {
+    display: block;
+    margin: auto;
+    position: absolute;
+    left: calc(50vw - 25px);
+    height: 50px;
+    top: 125px;
+}
+
 }
