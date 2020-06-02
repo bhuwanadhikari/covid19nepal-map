@@ -155,11 +155,19 @@ const getMaxValue = (data, displayType) => {
 
 const concertrationColors = {
     zero: '#fff',
-    two: '#fab14b',
-    four: '#f68c3b',
-    six: '#f14b32',
-    eight: '#e4432f',
-    ten: '#be3626'
+    green: '#8BFBC6',
+    grey: '#E5D139',
+    a:"#FBEEE6",
+    b:"#F6DDCC",
+    c:"#EDBB99",
+    d:"#E59866",
+    e:"#DC7633",
+    f:"#D35400",
+    g:"#BA4A00",
+    h:"#A04000",
+    i:"#873600",
+    j:"#6E2C00",
+    grey: '#D2B4DE '
 }
 
 
@@ -167,15 +175,21 @@ const concertrationColors = {
 const getConcColor = (data, displayType, regionName, maxVal) => {
     // let fillColor = 'white';
 
-    const fillColor = (qVal) => {
-        console.log(qVal, regionName)
-        if (qVal === 0) return concertrationColors.zero;
-        if (qVal > 0 && qVal <= 20) return concertrationColors.two;
-        if (qVal > 20 && qVal <= 40) return concertrationColors.four;
-        if (qVal > 40 && qVal <= 60) return concertrationColors.six;
-        if (qVal > 60 && qVal <= 80) return concertrationColors.eight;
-        if (qVal > 80 && qVal <= 100) return concertrationColors.ten;
 
+const fillColor = (qVal, rVal, dVal) => {
+        if (qVal === 0) return concertrationColors.zero;
+        if (qVal === rVal) return concertrationColors.green;
+        if (qVal === dVal) return concertrationColors.grey;
+        if (qVal > 0 && qVal <= 1) return concertrationColors.a;
+        if (qVal > 1 && qVal <= 2) return concertrationColors.b;
+        if (qVal > 2 && qVal <= 4) return concertrationColors.c;
+        if (qVal > 4 && qVal <= 8) return concertrationColors.d;
+        if (qVal > 8 && qVal <= 16) return concertrationColors.e;
+        if (qVal > 16 && qVal <= 32) return concertrationColors.f;
+        if (qVal > 32 && qVal <= 64) return concertrationColors.g;
+        if (qVal > 64 && qVal <= 128) return concertrationColors.h;
+        if (qVal > 128 && qVal <= 256) return concertrationColors.i;
+        if (qVal > 256 && qVal <= 512) return concertrationColors.j;
         return concertrationColors.zero;
     }
 
@@ -186,8 +200,10 @@ const getConcColor = (data, displayType, regionName, maxVal) => {
         const distData = data.byDistrict;
         const district = distData.find(el => el.district === regionName)
         const q = district.cases / maxVal * 100;
+        const r = district.recovered / maxVal * 100;
+        const d = district.deaths / maxVal * 100;
         $(`.${regionName}-label`)[0].style.fill = 'black';
-        return fillColor(q)
+        return fillColor(q, r, d)
 
     } else {
         //if shown  province wise
@@ -199,7 +215,9 @@ const getConcColor = (data, displayType, regionName, maxVal) => {
             }
         }
         const p = province.cases / maxVal * 100;
-        return fillColor(p)
+        const r = province.recovered / maxVal * 100;
+        const d = province.deaths / maxVal * 100;
+        return fillColor(p, r, d)
     }
 }
 
