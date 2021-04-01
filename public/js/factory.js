@@ -100,19 +100,19 @@ function getWholeData(inputCsv) {
 const updateTableData = (className, whatWise, data) => {
   if (whatWise === "district") {
     const districtData = data.find((el) => el.district == className);
-    $(".cases-value").text(districtData.cases);
-    $(".deaths-value").text(districtData.deaths);
-    $(".recovered-value").text(districtData.recovered);
+    $(".cases-value").text(districtData.cases.toLocaleString());
+    $(".deaths-value").text(districtData.deaths.toLocaleString());
+    $(".recovered-value").text(districtData.recovered.toLocaleString());
   }
   if (whatWise === "province") {
-    $(".cases-value").text(data[className].cases);
-    $(".deaths-value").text(data[className].deaths);
-    $(".recovered-value").text(data[className].recovered);
+    $(".cases-value").text(data[className].cases.toLocaleString());
+    $(".deaths-value").text(data[className].deaths.toLocaleString());
+    $(".recovered-value").text(data[className].recovered.toLocaleString());
   }
   if (whatWise === "country") {
-    $(".cases-value").text(data.cases);
-    $(".deaths-value").text(data.deaths);
-    $(".recovered-value").text(data.recovered);
+    $(".cases-value").text(data.cases.toLocaleString());
+    $(".deaths-value").text(data.deaths.toLocaleString());
+    $(".recovered-value").text(data.recovered.toLocaleString());
   }
 };
 

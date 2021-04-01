@@ -52,9 +52,9 @@ const updateBox = (covidData) => {
                  <tr class="tuple">
                     <td class="row-content col0 ">${allDistData.indexOf(aDist) + 1}</td>
                     <td class="row-content col1 district-name ">${aDist.district[0].toUpperCase() + aDist.district.slice(1)}</td>
-                    <td class="row-content col2 cases-num ">${aDist.cases}</td>
-                    <td class="row-content col3 deaths-num ">${aDist.deaths}</td>
-                    <td class="row-content col4 recovered-num  ">${aDist.recovered}</td>
+                    <td class="row-content col2 cases-num ">${aDist.cases.toLocaleString()}</td>
+                    <td class="row-content col3 deaths-num ">${aDist.deaths.toLocaleString()}</td>
+                    <td class="row-content col4 recovered-num  ">${aDist.recovered.toLocaleString()}</td>
                 </tr>
         `)
         }
@@ -71,9 +71,9 @@ const updateBox = (covidData) => {
                 <tr class="tuple">
                     <td class="row-content col0 ">${allProvData.indexOf(aProv) + 1}</td>
                     <td class="row-content col1 province-name ">${aProv.province[0].toUpperCase() + aProv.province.slice(1)}</td>
-                    <td class="row-content col2 cases-num ">${aProv.cases}</td>
-                    <td class="row-content col3 deaths-num ">${aProv.deaths}</td>
-                    <td class="row-content col4 recovered-num  ">${aProv.recovered}</td>
+                    <td class="row-content col2 cases-num ">${aProv.cases.toLocaleString()}</td>
+                    <td class="row-content col3 deaths-num ">${aProv.deaths.toLocaleString()}</td>
+                    <td class="row-content col4 recovered-num  ">${aProv.recovered.toLocaleString()}</td>
                 </tr>
             `);
         }
@@ -85,9 +85,9 @@ const updateBox = (covidData) => {
         <tr class="table-footer tuple">
         <td class="row-content col0 ">${' '}</td>
             <td class="row-content col1 total">Total</td>
-            <td class="row-content col2 cases-total ">${covidData.byCountry.cases}</td>
-            <td class="row-content col3 deaths-total ">${covidData.byCountry.deaths}</td>
-            <td class="row-content col4 recovered-total  ">${covidData.byCountry.recovered}</td>
+            <td class="row-content col2 cases-total ">${covidData.byCountry.cases.toLocaleString()}</td>
+            <td class="row-content col3 deaths-total ">${covidData.byCountry.deaths.toLocaleString()}</td>
+            <td class="row-content col4 recovered-total  ">${covidData.byCountry.recovered.toLocaleString()}</td>
         </tr>`
     )
 
@@ -132,8 +132,8 @@ const updateFillColors = (dWise, pWise) => {
 
 
 $.ajax({
-    // url: 'https://covid19nepal-api.herokuapp.com/corona-data',
-    url: 'http://localhost:5000/corona-data-test',
+    url: 'https://covid19nepal-api.herokuapp.com/corona-data',
+    // url: 'http://localhost:5000/corona-data-test',
     // url: 'http://127.0.0.1:5000/corona-data',
 }).then((res) => {
     covidInfo = getWholeData(res)
