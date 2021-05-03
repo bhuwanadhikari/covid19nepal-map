@@ -137,9 +137,10 @@ body::-webkit-scrollbar-thumb {
 }
 
 .hover-title {
-    background-color: #ccc;
+    background-color: #86d07a;
     border-radius: 4px;
     padding: 8px;
+    padding-left: 16px;
     font-weight: bold;
 }
 

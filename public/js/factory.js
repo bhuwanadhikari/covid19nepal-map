@@ -1,27 +1,5 @@
 function getWholeData(inputCsv) {
-  // function getWholeData(inputJson) {
-  /* Split input string by `,` and clean up each item */
-  // console.log(inputJson);
   const byDistrict = [];
-
-  // const jillaharu = []
-  // const jillEls = $('.district');
-  // for (let jilla of jillEls){
-  //     const jillaName = jilla.className.baseVal.split(' ')[1];
-  //     for( let aP of inputJson){
-  //         for(let aD of aP.districtData){
-  //             if(aD.confirmed>0){
-  //                 byDistrict.push({
-  //                     id: 10,
-  //                     district: aD.district,
-  //                     cases: aD.confirmed,
-  //                     deaths: ,
-  //                     recovered: ,
-  //                 })
-  //             }
-  //         }
-  //     }
-  // }
 
   // const arrayCsv = inputCsv.split('\n').map(s => s.replace(/"/gi, '').trim())
   const arrayCsv = inputCsv;
@@ -103,16 +81,33 @@ const updateTableData = (className, whatWise, data) => {
     $(".cases-value").text(districtData.cases.toLocaleString());
     $(".deaths-value").text(districtData.deaths.toLocaleString());
     $(".recovered-value").text(districtData.recovered.toLocaleString());
+    $(".active-value").text(
+      (
+        districtData.cases -
+        districtData.deaths -
+        districtData.recovered
+      ).toLocaleString()
+    );
   }
   if (whatWise === "province") {
     $(".cases-value").text(data[className].cases.toLocaleString());
     $(".deaths-value").text(data[className].deaths.toLocaleString());
     $(".recovered-value").text(data[className].recovered.toLocaleString());
+    $(".active-value").text(
+      (
+        data[className].cases -
+        data[className].deaths -
+        data[className].recovered
+      ).toLocaleString()
+    );
   }
   if (whatWise === "country") {
     $(".cases-value").text(data.cases.toLocaleString());
     $(".deaths-value").text(data.deaths.toLocaleString());
     $(".recovered-value").text(data.recovered.toLocaleString());
+    $(".active-value").text(
+      (data.cases - data.deaths - data.recovered).toLocaleString()
+    );
   }
 };
 
@@ -185,6 +180,6 @@ const getConcColor = (data, displayType, regionName, maxVal) => {
     let q = Math.ceil((province.cases / maxVal) * 100);
     let logVal = Math.ceil(Math.log(q) / Math.log(3));
 
-    return fillColor( logVal);
+    return fillColor(logVal);
   }
 };
