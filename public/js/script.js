@@ -37,6 +37,7 @@ const updateBox = (covidData) => {
             <td class="row-content col2 ">Cases </td>
             <td class="row-content col3 ">Deaths </td>
             <td class="row-content col4  ">Recovered </td>
+            <td class="row-content col5  ">Active Cases </td>
         </tr>`
     )
 
@@ -55,6 +56,7 @@ const updateBox = (covidData) => {
                     <td class="row-content col2 cases-num ">${aDist.cases.toLocaleString()}</td>
                     <td class="row-content col3 deaths-num ">${aDist.deaths.toLocaleString()}</td>
                     <td class="row-content col4 recovered-num  ">${aDist.recovered.toLocaleString()}</td>
+                    <td class="row-content col5 active-num  ">${aDist.recovered.toLocaleString()}</td>
                 </tr>
         `)
         }
@@ -74,6 +76,7 @@ const updateBox = (covidData) => {
                     <td class="row-content col2 cases-num ">${aProv.cases.toLocaleString()}</td>
                     <td class="row-content col3 deaths-num ">${aProv.deaths.toLocaleString()}</td>
                     <td class="row-content col4 recovered-num  ">${aProv.recovered.toLocaleString()}</td>
+                    <td class="row-content col5 active-num  ">${aProv.recovered.toLocaleString()}</td>
                 </tr>
             `);
         }
@@ -88,6 +91,7 @@ const updateBox = (covidData) => {
             <td class="row-content col2 cases-total ">${covidData.byCountry.cases.toLocaleString()}</td>
             <td class="row-content col3 deaths-total ">${covidData.byCountry.deaths.toLocaleString()}</td>
             <td class="row-content col4 recovered-total  ">${covidData.byCountry.recovered.toLocaleString()}</td>
+            <td class="row-content col5 active-total  ">${covidData.byCountry.recovered.toLocaleString()}</td>
         </tr>`
     )
 
